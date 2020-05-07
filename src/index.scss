@@ -12,30 +12,32 @@ code {
     monospace;
 }
 
-.App {
-  text-align: center;
-}
+.App {}
 
-.App-header {
-  background-color: blue;
-  min-height: 100vh;
+header{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  width:100%;
+  justify-content: space-between;
+    
+    .header-wrapper{
+      display:flex;
+      flex-direction: column;
+      width:80%;
+      margin: 0 auto;
+        
+        .top-header{
+          display:flex;
+          flex-direction: row;
+          width:100%;
+          background-color: yellow;
+        }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+        .bottom-header{
+          display:flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width:100%;
+          background-color: orange;
+        }
+    }
 }
