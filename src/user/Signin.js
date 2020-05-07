@@ -1,43 +1,51 @@
 import React, { Component } from 'react'
+import {Redirect} from 'react-router-dom';
 
-class Signup extends Component {
+class Signin extends Component {
     state = {
-        name: "",
         email: "",
         password: "",
         error: "",
-        open:false
+        redirectToReferer: false
 
-    };
+
+    }
 
     handleChange = (name) => (event) => {
         this.setState({error:""}) //quan hi ha canvis al formulari els errors no es mostren si shavien mostrat abans
         this.setState({[name]: event.target.value})
     }
-
-
+    
+    authenticate (jwt, next) {
+        if(typeof window !== "undefined"){
+            localStorage.setItem("jwt", JSON.stringify(jwt))
+            next();
+        } 
+    }
+    
 
     clickSubmit = event => {
         event.preventDefault()
-        const { name, email, password} = this.state;
-        const user = { name, email, password};
+        const {email, password} = this.state;
+        const user = {email, password};
 
-       this.signup(user)
+       this.signin(user)
        .then(data => {
-           if(data.error) this.setState({error: data.error})
-                else this.setState({
-                    error: "",
-                    name:"",
-                    email:"",
-                    password: "",
-                    open: true
+           if(data.error) 
+           this.setState({error: data.error})
+            else {
+                //autenticar
+                this.authenticate(data, ()=>{
+                this.setState({redirectToReferer:true})
                 })
+                //redirigir        
+            }
        })
-       
     };
 
-    signup = (user) => {
-         return fetch("http://localhost:8080/signup", {
+
+    signin = (user) => {
+         return fetch("http://localhost:8080/signin", {
             method: "POST",
             headers: {
                 Accept: "aplication/json",
@@ -51,12 +59,9 @@ class Signup extends Component {
         .catch(err => console.log (err))
     }
 
-    signupForm = (name, email, password) => (
+    signinForm = (email, password) => (
         <form>
-                    <div className="form-group">
-                        <label className="text-muted">Name</label>
-                        <input onChange={this.handleChange ("name")} type="text" value={name} className="form-control" />
-                    </div> 
+                    
                     <div className="form-group">
                         <label className="text-muted">Email</label>
                         <input onChange={this.handleChange ("email")} type="email" value={email}className="form-control"/>
@@ -74,21 +79,21 @@ class Signup extends Component {
 
     render() {
 
-        const {name, email, password, error, open} = this.state;
+        const {email, password, error, redirectToReferer} = this.state;
+
+        if (redirectToReferer){
+            return <Redirect to="/"/>
+        }
         return (
             <div className="container">
-                <h1>Signup</h1>
+                <h1>Signin</h1>
                 <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>
-                <div className="alert alert-primary" style={{display:open ? "" : "none"}}> 
-                    New account created successfully. Please signin.
-                </div>
-                {this.signupForm(name, email, password)}
+                {this.signinForm(email, password)}
             </div>
-        );
+        )
     }
 }
 
-
-export default Signup;
+export default Signin
