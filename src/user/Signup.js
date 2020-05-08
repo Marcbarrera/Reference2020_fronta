@@ -8,7 +8,6 @@ class Signup extends Component {
         password: "",
         error: "",
         open:false
-
     };
 
     handleChange = (name) => (event) => {
@@ -16,27 +15,23 @@ class Signup extends Component {
         this.setState({[name]: event.target.value})
     }
 
-
-
     clickSubmit = event => {
         event.preventDefault()
         const { name, email, password} = this.state;
         const user = { name, email, password};
 
-    signup(user)
-       .then(data => {
+    signup(user).then(data => {
            if(data.error) this.setState({error: data.error})
                 else this.setState({
                     error: "",
-                    name:"",
-                    email:"",
+                    name: "",
+                    email: "",
                     password: "",
                     open: true
             })
         })
        
     };
-
 
     signupForm = (name, email, password) => (
         <form>

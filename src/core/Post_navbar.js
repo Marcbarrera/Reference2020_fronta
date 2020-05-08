@@ -23,5 +23,3 @@ const Post_navbar = ({history}) => (
     </nav>
 )
 export default withRouter(Post_navbar);
-
-

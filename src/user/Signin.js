@@ -23,14 +23,16 @@ class Signin extends Component {
         const {email, password} = this.state;
         const user = {email, password};
 
-       signin(user)
-       .then(data => {
-           if(data.error) 
+       
+
+    signin(user).then(data => {
+           if(data.error) {
            this.setState({error: data.error})
+           }
             else {
                 //autenticar
-                authenticate(data, ()=>{
-                this.setState({redirectToReferer:true})
+                authenticate(data, () => {
+                this.setState({redirectToReferer: true})
                 })
                 //redirigir        
             }
