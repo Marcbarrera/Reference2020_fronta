@@ -1,25 +1,12 @@
 import React from "react";
 import User_navbar_out from './User_navbar_out';
 import User_navbar_in from './User_navbar_in';
-
 import Post_navbar from './Post_navbar'
 import { Link, withRouter } from 'react-router-dom';
-
-export const isAuthenticated = () => {
-    if(typeof window == "undefined") {
-        return false;
-    }
-    if(localStorage.getItem("jwt")){
-        return JSON.parse(localStorage.getItem("jwt"))
-    } else {
-        return false;
-    }
-}
+import {isAuthenticated} from '../auth/index';
 
 
-const Header = () => 
-
-(
+const Header = () => (
     <header>
         <div className="header-wrapper">
             <div className="top-header">

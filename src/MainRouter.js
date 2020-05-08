@@ -3,6 +3,7 @@ import {Route, Switch} from 'react-router-dom';
 import Header from "./core/Header";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
+import Profile from "./user/Profile";
 
 
 const MainRouter = () => (
@@ -11,6 +12,7 @@ const MainRouter = () => (
         <Switch>
             <Route exact path="/signup" component={Signup}></Route>
             <Route exact path="/signin" component={Signin}></Route>
+            <Route exact path="/user/:userId" component={Profile}></Route>
         </Switch>
     </div>
 )
