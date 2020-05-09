@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { isAuthenticated } from '../auth'
 
- class Profile extends Component {
+class Profile extends Component {
     state = {
-        user: "",
-        redirectToSignin: false
+        user: '',
+        redirectToSignin: false,
+    
     }
 
     componentDidMount() {
 
         const userId = this.props.match.params.userId
-        fetch(`${process.env.development.REACT_APP_API_URL}/user/${userId}` , {
+        fetch(`${process.env.REACT_APP_API_URL}/user/${userId}` , {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -25,7 +26,7 @@ import { isAuthenticated } from '../auth'
             if (data.error) {
                 console.log("ERROR");
             } else {
-                this.setState(data);
+                this.setState({user: data});
             }
         })
     }
@@ -37,6 +38,10 @@ import { isAuthenticated } from '../auth'
                 <h2>Profile</h2>
         <p>Hello {isAuthenticated().user.name}</p>
         <p>Email {isAuthenticated().user.email}</p>
+        <p>{`Joined ${new Date(this.state.user.created).toDateString()}`}</p>
+        {console.log("HOLEAAAAA")}
+        {console.log(this.state.user.created)}
+
 
                  
                 
@@ -46,4 +51,4 @@ import { isAuthenticated } from '../auth'
     }
 }
 
-export default Profile
+export default Profile;
