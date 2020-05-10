@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { isAuthenticated } from '../auth'
 import { Redirect, Link } from 'react-router-dom'
-// import {read} from "./apiUser"
+import {read} from "./apiUser"
 
 
 class Profile extends Component {
@@ -10,25 +10,10 @@ class Profile extends Component {
         redirectToSignin: false,
     }
 
-    read = (userId, token) => {
-        return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}` , {
-                    method: "GET",
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                .then(response => {
-                    return response.json()
-                })
-                .catch(err => console.log(err));
-    
-    }
-
+ 
     init = userId => {
         const token = isAuthenticated().token;
-        this.read(userId, token).then(data => {
+        read(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true});
             } else {

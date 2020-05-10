@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import {list} from "./apiUser"
+import {list} from "./apiUser"
 
  class Users extends Component {
     state = {
@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 
 
     componentDidMount () {
-        this.list().then(data => {
+        list().then(data => {
             if(data.error) {
                 console.log(data.error);
             } else {
@@ -18,12 +18,17 @@ import React, { Component } from 'react'
     }
 
     render() {
+        const {users} = this.state
         return (
             <div className="container">
                 <h2>users</h2>
-                
+                <div className="card">
+                    {users.map((user, i) =>(
+                        <p>{user.name}</p>
+                    ))}
+                </div>
             </div>
-        )
+        );
     }
 }
 export default Users
