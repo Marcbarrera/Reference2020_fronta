@@ -22,12 +22,14 @@ const User_navbar = ({history}) => (
                 </span> 
             </li>
             <li className="nav-item">
-                <span>
-                    <Link to={`/user/${isAuthenticated().user._id}`}>
+                    <Link to={`/user/${isAuthenticated().user._id}`} 
+                     style={
+                     isActive(
+                         history, 
+                         `/user/${isAuthenticated().user._id}`
+                         )}>
                     {isAuthenticated().user.name}
-                    </Link>
-                    
-                </span> 
+                    </Link>                    
             </li>
         </ul>
     </nav>
