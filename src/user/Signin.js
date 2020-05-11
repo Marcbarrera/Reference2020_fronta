@@ -67,7 +67,8 @@ class Signin extends Component {
         }
         return (
             <div className="container">
-                <h1>Signin</h1>
+                <h2> SIGN IN</h2>
+                <p> TO KEEP ENJOYING OUR CONTENT</p>
                 <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>

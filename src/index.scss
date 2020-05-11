@@ -1,3 +1,4 @@
+
 *{
   padding:0px;
   margin:0px;
@@ -15,7 +16,6 @@ code {
 }
 
 .App {}
-
 header{
   display: flex;
   width:100%;
@@ -27,7 +27,7 @@ header{
       display:flex;
       flex-direction: column;
       justify-content: space-evenly;
-      width:70%;
+      width:80%;
       margin: 0 auto;
         
         .top-header{
@@ -35,6 +35,23 @@ header{
           flex-direction: row;
           width:100%;
           // background-color: yellow;
+            h1{
+                       /* unvisited link */
+                      a:link {
+                        color: black;
+                        text-decoration: none;
+                      }
+
+                      /* visited link */
+                      a:visited {
+                        color: black;
+                      }
+
+                      /* mouse over link */
+                      a:hover {
+                        color: hotpink;
+                      }
+            }
         }
 
         .bottom-header{
@@ -56,7 +73,7 @@ header{
   
                     a{
                       text-decoration: none;
-                      padding-right: 10px;
+                      padding-right: 20px;
                     }
   
                   }
@@ -128,4 +145,142 @@ header{
 
         }
     }
+}
+.users-list-image{
+  width:200px;
+}
+
+@media screen and (max-width:451px){
+
+  *{
+    padding:0px;
+    margin:0px;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      sans-serif;
+    
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  .App {}
+  header{
+    display: flex;
+    width:100%;
+    justify-content: space-between;
+    height:13vh;
+    // background-color: #000000;
+      
+      .header-wrapper{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width:80%;
+        margin: 0 auto;
+          
+          .top-header{
+            display:flex;
+            flex-direction: row;
+            width:100%;
+            // background-color: yellow;
+          }
+  
+          .bottom-header{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width:100%;
+            height: 40px;
+              
+              .post-navbar{
+                display:none;
+                flex-direction: row;
+                align-items: center;
+                  ul{
+                    display: flex;
+                    list-style-type: none;
+    
+                    li{
+    
+                      a{
+                        text-decoration: none;
+                        padding-right: 20px;
+                      }
+    
+                    }
+                  }
+                }
+                .user-navbar-not-in{
+                  display:flex;
+                  flex-direction: row;
+                  align-items: center;
+                    ul{
+                      display: flex;
+                      list-style-type: none;    
+                      li{
+                        a{
+                          text-decoration: none;
+                          padding-left: 10px;
+                        }
+      
+                      }
+                    }
+  
+                }
+                .user-navbar-in{
+                  display:flex;
+                  flex-direction: row;
+                  align-items: center;
+                    ul{
+                      display: flex;
+                      list-style-type: none;    
+                      li{
+                          text-decoration: none;
+                          padding-left: 10px;
+                      }
+                    }
+  
+                }
+            }
+          
+      }
+  }
+  
+  .profile{
+    h2{
+      padding:5vh 0 5vh 0;
+      text-align: center;
+      }
+      .container{
+          display:flex;
+          flex-direction: row;
+          width:70%;
+          margin:  auto;
+          background-color: red;
+          
+          .first-column{
+            padding:5%;
+            display: flex;
+            flex-direction: column;
+            width:50%;
+            background-color: orange;
+  
+  
+          }
+          .second-column{
+            padding:5%;
+            display: flex;
+            flex-direction: column;
+            width:50%;
+            background-color:green;
+  
+          }
+      }
+  }
+  
 }

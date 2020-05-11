@@ -11,13 +11,22 @@ const Post_navbar = ({history}) => (
     <nav className="post-navbar">
        <ul className="">
             <li className="nav-items">
-                <Link style={isActive(history, "/hola")} to="/hola">Categories</Link>
+                <Link style={isActive(history, "/categories")} to="/categories">Categories</Link>
             </li>
             <li className="nav-items">
-                <Link style={isActive(history, "/adeu")} to="/adeu">Top post</Link>
+                <Link style={isActive(history, "/newposts")} to="/newestposts">Newest posts</Link>
+            </li>
+            <li className="nav-items">
+                <Link style={isActive(history, "/toppost")} to="/adeu">Top post</Link>
             </li>
             <li className="nav-items">
                 <Link style={isActive(history, "/users")} to="/users">Users</Link>
+            </li>
+            <li className="nav-items">
+                <Link style={isActive(history, "/writeapost")} to="/writeapost">Write a post</Link>
+            </li>
+            <li className="nav-items">
+                <Link style={isActive(history, "/Myposts")} to="/myposts">My posts</Link>
             </li>
         </ul>
     </nav>

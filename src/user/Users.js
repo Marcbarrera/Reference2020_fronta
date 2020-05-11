@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {list} from "./apiUser"
+import {Link} from 'react-router-dom'
+import DefaultUserImage from '../images/User_placeholder_image.png'
 
  class Users extends Component {
     state = {
@@ -18,13 +20,24 @@ import {list} from "./apiUser"
     }
 
     render() {
-        const {users} = this.state
+        const {users} = this.state;
         return (
             <div className="container">
                 <h2>users</h2>
-                <div className="card">
+                <div className="card" style={{width:"15%", backgroundColor: "yellow"}}>
                     {users.map((user, i) =>(
-                        <p>{user.name}</p>
+                        <div key={i}>
+                            <div className="users-list-image">
+                            <img className="card-image-top" src={DefaultUserImage} alt={user.name} picture style={{width: "100%"}}/>
+                            </div>
+                            <div className="users-card-body">
+                                <p>{user.name}</p>
+                                <p>{user.bio}</p>
+                                <Link to={`/user/${user._id}`} className="view-profile-button">
+                                view Profile
+                                </Link>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

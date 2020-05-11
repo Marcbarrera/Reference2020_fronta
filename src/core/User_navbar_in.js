@@ -12,7 +12,7 @@ const User_navbar = ({history}) => (
         <ul className="nav nav-tabs">
             <li className="nav-item">
                 <span>
-                Welcome {isAuthenticated().user.name}
+                Hi {isAuthenticated().user.name}!
                 </span> 
             </li>
             <li className="nav-item">

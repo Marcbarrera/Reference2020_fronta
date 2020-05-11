@@ -12,6 +12,11 @@ const isActive = (history, path) => {
 const User_navbar = ({history}) => (
     <nav className="user-navbar-not-in">
         <ul className="nav nav-tabs">
+        <li className="nav-item">
+                <Link style={isActive(history, "/signin")} to="/signin">
+                    experiment
+                </Link>
+            </li>
             <li className="nav-item">
                 <Link style={isActive(history, "/signin")} to="/signin">
                     Singin
