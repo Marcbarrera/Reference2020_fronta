@@ -28,7 +28,9 @@ import DefaultUserImage from '../images/User_placeholder_image.png'
                     {users.map((user, i) =>(
                         <div key={i}>
                             <div className="users-list-image">
-                            <img className="card-image-top" src={DefaultUserImage} alt={user.name} picture style={{width: "100%"}}/>
+                            <img className="card-image-top" src={`${process.env.REACT_APP_API_URL}/user/photo/${user._id}`}
+                             onError={i => (i.target.src = `${DefaultUserImage}`)}
+                             alt={user.name} picture style={{width: "100%"}}/>
                             </div>
                             <div className="users-card-body">
                                 <p>{user.name}</p>

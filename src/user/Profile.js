@@ -42,6 +42,11 @@ class Profile extends Component {
     const {redirectToSignin, user} = this.state;
     if(redirectToSignin) return <Redirect to="/signin"/> 
 
+
+    const photoUrl = user._id ? `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}`
+    : DefaultUserImage; 
+
+
     return (
 
         <section className="profile">
@@ -50,7 +55,9 @@ class Profile extends Component {
             <div className="container">
                 <div className="first-column">
                     <div className="users-list-image">
-                        <img className="card-image-top" src={DefaultUserImage} alt={user.name} picture style={{width: "100%"}}/>
+                        <img className="card-image-top" src={photoUrl}
+                        onError={i => (i.target.src = `${DefaultUserImage}`)}
+                        alt={user.name} picture style={{width: "100%"}}/>
                     </div>
                     <div className="users-card-body">
                         <p>Hello {user.name}</p>
