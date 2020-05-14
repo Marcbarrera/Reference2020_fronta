@@ -3,6 +3,7 @@ import { isAuthenticated } from '../auth'
 import { Redirect, Link } from 'react-router-dom'
 import {read} from "./apiUser"
 import DefaultUserImage from '../images/User_placeholder_image.png'
+import DeleteUser from './DeleteUser'
 
 
 
@@ -75,6 +76,7 @@ class Profile extends Component {
                                 Edit profile
                             </Link>
                             </button>
+                            <DeleteUser userId={user._id}/>
                                 
                         </div>
                     )}

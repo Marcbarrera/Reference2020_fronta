@@ -14,7 +14,7 @@ const Post_navbar = ({history}) => (
                 <Link style={isActive(history, "/categories")} to="/categories">Categories</Link>
             </li>
             <li className="nav-items">
-                <Link style={isActive(history, "/newposts")} to="/newestposts">Newest posts</Link>
+                <Link style={isActive(history, "/newestposts")} to="/newestposts">Newest posts</Link>
             </li>
             <li className="nav-items">
                 <Link style={isActive(history, "/toppost")} to="/adeu">Top post</Link>
@@ -23,12 +23,13 @@ const Post_navbar = ({history}) => (
                 <Link style={isActive(history, "/users")} to="/users">Users</Link>
             </li>
             <li className="nav-items">
-                <Link style={isActive(history, "/writeapost")} to="/writeapost">Write a post</Link>
+                <Link style={isActive(history, "/post/created")} to="/post/created">Write a post</Link>
             </li>
             <li className="nav-items">
                 <Link style={isActive(history, "/Myposts")} to="/myposts">My posts</Link>
             </li>
         </ul>
     </nav>
+    
 )
 export default withRouter(Post_navbar);
