@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { isAuthenticated } from '../auth/index'
+import { isAuthenticated } from '../auth'
 import {create} from './apiPost'
 import { Redirect } from 'react-router-dom'
 // import DefaultUserImage from '../images/User_placeholder_image.png'
@@ -12,7 +12,6 @@ class WriteAPost extends Component {
         photo:'',
         error:'',
         user: {},
-        prova:{},
         fileSize : 0,
         loading: false,
         redirectToProfile:false
@@ -21,13 +20,14 @@ class WriteAPost extends Component {
 
     componentDidMount() {
         this.postData = new FormData();
-        this.setState({user: isAuthenticated().user})
-        console.log(this.state)
-        
+        this.setState({ user: isAuthenticated().user });
+     
+         
     }
 
+
     isValid = () => {
-        const { title, body, fileSize} = this.state
+        const {title, body, fileSize} = this.state
 
         if (fileSize > 1500000) {
             this.setState({error: "File size should be less than 1.5Mb"})
@@ -56,15 +56,21 @@ class WriteAPost extends Component {
     
      
         if (this.isValid()) {
-            const userId = isAuthenticated().userId;
+            const userId = isAuthenticated().user._id;  //aquí estava l'error
             const token = isAuthenticated().token;
+           
+
 
             create(userId, token, this.postData).then(data => {
+
                 if (data.error){
-                     this.setState({ error: data.error });
+                this.setState({ error: data.error });
                 }
+                
                 else {
-                    this.setState({ loading:false, title: '', body:'', photo: ''})
+                    console.log("holaaaaaaaa")
+                    console.log("new post",data)
+                    this.setState({ loading:false, title: '', body:'', photo: '', redirectToProfile: true})
                 }
             });
         }
@@ -99,12 +105,15 @@ class WriteAPost extends Component {
     )
 
     render() {
-        const { title, body, photo, user, error, loading, redirectToProfile} = this.state;
+        const {  title, body, photo, user, error, loading, redirectToProfile} = this.state;
 
         if (redirectToProfile){
-            return <Redirect to={`/user/${user._id}`}/>
+            return <Redirect to={`/user/${user._id}`}/> 
         }
 
+
+        // const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}`
+        // : DefaultUserImage; 
      
 
         return (
@@ -131,7 +140,7 @@ class WriteAPost extends Component {
                 {this.newPostForm(title, body)}
 
             </div>
-    )
+        )
     }
 }
 

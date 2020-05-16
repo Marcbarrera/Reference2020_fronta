@@ -35,7 +35,7 @@ export const authenticate = (jwt, next) => {
     } 
 }
 
-export const  isAuthenticated = () => {
+export const isAuthenticated = () => {
     if(typeof window == "undefined") {
         return false;
     }
