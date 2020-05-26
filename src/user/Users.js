@@ -46,4 +46,4 @@ import DefaultUserImage from '../images/User_placeholder_image.png'
         );
     }
 }
-export default Users
+export default Users;
