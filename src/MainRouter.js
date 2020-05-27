@@ -8,6 +8,8 @@ import Profile from "./user/Profile";
 import Users from "./user/Users";
 import Editprofile from "./user/Editprofile"
 import Categories from "./pages/Categories"
+import Music from "./pages/Music"
+
 import NewestPosts from './pages/NewestPosts'
 import WriteAPost from "./post/WriteAPost"
 import PrivateRoute from './auth/PrivateRoute'
@@ -23,6 +25,7 @@ const MainRouter = () => (
             <Route exact path="/posts" component={Posts}></Route>
             <Route exact path="/post/:postId" component={SinglePost}></Route>
             <Route exact path="/categories" component={Categories}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
             <Route exact path="/newestposts" component={NewestPosts}></Route>
             <Route exact path="/users" component={Users}></Route>
             <Route exact path="/signup" component={Signup}></Route>

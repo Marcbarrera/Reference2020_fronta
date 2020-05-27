@@ -69,13 +69,13 @@ class WriteAPost extends Component {
         let value;
         let fileSize;
 
-        if ((name === "photo1") || name === "photo2" || name === "photo_target") {
+        if ((name === "photo1") || name === "photo2" || name === "photo_target" || name === "photo_reference") {
             value = event.target.files[0] 
         }else{
             value = event.target.value;
         }
 
-       if ((name === "photo1") || name === "photo2" || name === "photo_target") {
+       if ((name === "photo1") || name === "photo2" || name === "photo_target" || name === "photo_reference") {
             fileSize = event.target.files[0].size
         }else{
             fileSize = 0;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {list} from "./apiPost"
+import {list} from "../post/apiPost"
 import {Link} from 'react-router-dom'
 import DefaultPost from '../images/defaulPostImg.jpg'
 
@@ -23,7 +23,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         return (
         <ul className="row">
             
-            {posts.map((post, i) => {
+            {posts.filter((post)=> post.category === "Music").map((post, i) => {
 
                 const posterId = post.postedBy ? post.postedBy._id : "";
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
@@ -73,7 +73,8 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                     </div>
                 </li>
             )
- })}
+ })
+ }
         
 
         </ul>

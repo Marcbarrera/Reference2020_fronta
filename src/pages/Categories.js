@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
  function Categories() {
     return (
@@ -6,7 +7,7 @@ import React from 'react'
             <h2>CATEGORIES</h2>
             <div className="container">
                 <div className="categories-wrapper">
-                    <div className="music-category">MUSIC</div>
+                    <Link to="/categories/music" ><div className="music-category">MUSIC</div></Link>
                     <div className="cinema-category"></div>
                     <div className="finearts-category"></div>
                     <div className="photography-category"></div>

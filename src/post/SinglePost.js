@@ -70,7 +70,7 @@ renderPost = (post) => {
                     }/post/photo_reference/${post._id}`}
                     alt={post.title}
                     onError={i =>
-                        (i.target.src = `${DefaultPost}`)
+                        (i.target.src = 'null')
                     }
                     
                 />
@@ -88,6 +88,9 @@ renderPost = (post) => {
                     </Link>
                     on {new Date (post.created).toDateString()}
                 </p>
+                <Link to={`/`} className="button-backToPost">
+                    Back to Home
+                </Link>
                         
             </div>
         </div>
