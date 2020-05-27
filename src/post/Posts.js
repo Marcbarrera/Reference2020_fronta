@@ -15,6 +15,8 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                 console.log(data.error);
             } else {
                 this.setState({ posts: data});
+                console.log("holaaaaaaaa")
+                console.log(data[1].category)
             }
         });
     }
@@ -29,7 +31,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         const posterName = post.postedBy ? post.postedBy.name : " Unknown";
                
             
-            console.log(post)
+            // console.log(post)
             return (
                 <li className={`card col-md-4 ${post.category}`} key={i}>
  
@@ -55,8 +57,8 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                         
                     />
                     <h5 className="card-title">{post.title}</h5>
+                    <p className="card-text"><strong>{post.category}</strong></p>
                     <p className="card-text">{post.body}</p> 
-
                     <p className="font-italic mark">
                         Posted by {" "}
                         <Link to={`user/${posterId}`}>

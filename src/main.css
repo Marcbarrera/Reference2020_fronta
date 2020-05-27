@@ -712,8 +712,15 @@ header {
 img {
   max-width: 200px; }
 
-.Fashion {
+.Music {
   background: pink; }
 
 .Arts {
   background: green; }
+
+.Photography {
+  background-color: blue;
+}
+.Fashion {
+  background-color: brown;
+}

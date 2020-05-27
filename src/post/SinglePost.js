@@ -54,6 +54,28 @@ renderPost = (post) => {
                     }
                     
                 />
+                <img
+                    src={`${
+                        process.env.REACT_APP_API_URL
+                    }/post/photo_target/${post._id}`}
+                    alt={post.title}
+                    onError={i =>
+                        (i.target.src = 'null')
+                    }
+                    
+                />
+                <img
+                    src={`${
+                        process.env.REACT_APP_API_URL
+                    }/post/photo_reference/${post._id}`}
+                    alt={post.title}
+                    onError={i =>
+                        (i.target.src = `${DefaultPost}`)
+                    }
+                    
+                />
+
+
 
                 <p className="card-text">{post.body}</p> 
                 {/* substring es per previsualitar els primers 100 caracters a la carta */}
