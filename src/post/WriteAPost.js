@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import { isAuthenticated } from '../auth'
 import {create} from './apiPost'
 import { Redirect } from 'react-router-dom'
+import Select from 'react-select';
 
-
+const options = [
+    { value: 'music', label: 'Music'},
+    { value: 'cinema', label: 'Cinema' },
+    { value: 'fine arts', label: 'Fine arts' },
+    { value: 'photography', label: 'Photography' },
+    { value: 'literature', label: 'Literature' },
+    { value: 'fashion', label: 'Fashion' },
+  ];
 
 class WriteAPost extends Component {
     state = {
@@ -14,6 +22,8 @@ class WriteAPost extends Component {
         error:'',
         user: {},
         fileSize : 0,
+        category: '',
+        selectedOption: 'null',
         loading: false,
         redirectToProfile:false
     }
@@ -54,6 +64,8 @@ class WriteAPost extends Component {
     // };
 
     handleChange = name => event => {
+       
+      
         this.setState({ error: "" });
         let value;
         let fileSize;
@@ -79,6 +91,13 @@ class WriteAPost extends Component {
     };
 
 
+    selectChange = selectedOption => {
+        this.setState({ selectedOption});
+        // const category = selectedOption.value 
+        // this.setState({category:category})
+        // console.log(`Category selected:`, category);
+      };
+    
 
     clickSubmit = event => {
         event.preventDefault();
@@ -98,7 +117,6 @@ class WriteAPost extends Component {
                 }
                 
                 else {
-                    
                     console.log("new post",data)
                     this.setState({ loading:false, title: '', body:'', photo1: '', photo2: '', redirectToProfile: true})
                 }
@@ -117,7 +135,7 @@ class WriteAPost extends Component {
     // )
 
     render() {
-        const {  title, body, photo1, photo2, user, error, loading, redirectToProfile} = this.state;
+        const {  title, body, photo1, photo2, user, selectedOption, category, error, loading, redirectToProfile} = this.state;
 
         if (redirectToProfile){
             return <Redirect to={`/user/${user._id}`}/> 
@@ -150,6 +168,15 @@ class WriteAPost extends Component {
                 {/* {this.newPostForm(title, body)} */}
 
                 <form>
+               
+                   
+                    <h5>Category</h5>
+                    <Select
+                         value={selectedOption}
+                         onChange={this.selectChange}
+                         options={options}
+                         />
+
                     <div className="form-group">
                         <label className="text-muted">first Picture</label>
                         <input onChange={this.handleChange("photo1")} type="file" accept="image/*" className="form-control" />
@@ -162,6 +189,10 @@ class WriteAPost extends Component {
                         <label className="text-muted">Title</label>
                         <input onChange={this.handleChange ("title")} type="text" value={title} className="form-control" />
                     </div> 
+                    <div className="form-group">
+                        <label className="text-muted">Category</label>
+                        <input onChange={this.handleChange ("category")} type="text" value={category} className="form-control" />
+                    </div>
 
                     <div className="form-group">
                         <label className="text-muted">Body</label>

@@ -29,7 +29,7 @@ class Editprofile extends Component {
             if (data.error) {
                 this.setState({ redirectToProfile: true});
             } else {
-                this.setState({ id: data._id, name: data.name, email: data.email, error:'', bio:data.bio, mini_description: data.mini_description });
+                this.setState({ id: data._id, name: data.name, last_name:data.last_name, email: data.email, error:'', bio:data.bio, mini_description: data.mini_description });
             }
         })
     }

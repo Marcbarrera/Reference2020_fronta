@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom'
 import {read} from "./apiUser"
 import DefaultUserImage from '../images/User_placeholder_image.png'
 import DeleteUser from './DeleteUser'
+import {listByUser} from '../post/apiPost'
 
 
 
@@ -11,6 +12,8 @@ class Profile extends Component {
     state = {
         user: '',
         redirectToSignin: false,
+        error:"",
+        posts: []
     }
 
  
@@ -21,9 +24,22 @@ class Profile extends Component {
                 this.setState({ redirectToSignin: true});
             } else {
                 this.setState({user: data});
+                // this.loadPosts(data._id)
             }
         })
     }
+
+    // loadPosts = userId => {
+    //     const token = isAuthenticated().token;
+    //     listByUser(userId, token).then(data => {
+    //         if(data.error){
+    //             console.log(data.error);
+    //         } else {
+    //             this.setState({ posts:data})
+    //         }
+    //     })
+
+    // }
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
@@ -40,7 +56,7 @@ class Profile extends Component {
 
     render() {
 
-    const {redirectToSignin, user} = this.state;
+    const {redirectToSignin, user, posts} = this.state;
     if(redirectToSignin) return <Redirect to="/signin"/> 
 
 
@@ -61,10 +77,13 @@ class Profile extends Component {
                         alt={user.name} picture style={{width: "100%"}}/>
                     </div>
                     <div className="users-card-body">
-                        <p>Hello {user.name}</p>
+                    <p>Hello {user.name}{" "}{user.last_name}</p>
                         <p>Email {user.email}</p>
                         <p>Bio {user.bio}</p>
                         <p>{`Joined ${new Date(this.state.user.created).toDateString()}`}</p>
+                        <div>
+                            posts={posts}
+                        </div>
                     </div>
                 </div>
                 <div className="second-column">
