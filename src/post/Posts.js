@@ -21,63 +21,62 @@ import DefaultPost from '../images/defaulPostImg.jpg'
 
     renderPosts = posts => {
         return (
-        <div className="row">
+        <ul className="row">
             
             {posts.map((post, i) => {
 
-const posterId = post.postedBy ? post.postedBy._id : "";
-const posterName = post.postedBy ? post.postedBy.name : " Unknown";
+        const posterId = post.postedBy ? post.postedBy._id : "";
+        const posterName = post.postedBy ? post.postedBy.name : " Unknown";
                
             
-
+            console.log(post)
             return (
-                <div className="card col-md-4" key={i}>
+                <li className={`card col-md-4 ${post.category}`} key={i}>
  
                     <div className="card-body">
                     <img
-                                    src={`${
-                                        process.env.REACT_APP_API_URL
-                                    }/post/photo1/${post._id}`}
-                                    alt={post.title}
-                                    onError={i =>
-                                        (i.target.src = `${DefaultPost}`)
-                                    }
-                                   
-                                />
+                        src={`${
+                            process.env.REACT_APP_API_URL
+                        }/post/photo1/${post._id}`}
+                        alt={post.title}
+                        onError={i =>
+                            (i.target.src = `${DefaultPost}`)
+                        }
+                        
+                    />
                     <img
-                                    src={`${
-                                        process.env.REACT_APP_API_URL
-                                    }/post/photo2/${post._id}`}
-                                    alt={post.title}
-                                    onError={i =>
-                                        (i.target.src = `${DefaultPost}`)
-                                    }
-                                   
-                                />
-                        <h5 className="card-title">{post.title}</h5>
-                                <p className="card-text">{post.body}</p> 
+                        src={`${
+                            process.env.REACT_APP_API_URL
+                        }/post/photo2/${post._id}`}
+                        alt={post.title}
+                        onError={i =>
+                            (i.target.src = `${DefaultPost}`)
+                        }
+                        
+                    />
+                    <h5 className="card-title">{post.title}</h5>
+                    <p className="card-text">{post.body}</p> 
 
-                                <p className="font-italic mark">
-
-                                    Posted by {" "}
-                                    <Link to={`user/${posterId}`}>
-                                        {posterName}{" "}
-                                    </Link>
-                                    on {new Date (post.created).toDateString()}
-                                </p>
-                                <Link
-                                    to={`/post/${post._id}`}
-                                    className="btn btn-raised byn-primary btn-sm"
-                                >
-                                    Read more
-                                </Link>
+                    <p className="font-italic mark">
+                        Posted by {" "}
+                        <Link to={`user/${posterId}`}>
+                            {posterName}{" "}
+                        </Link>
+                        on {new Date (post.created).toDateString()}
+                    </p>
+                    <Link
+                        to={`/post/${post._id}`}
+                        className="btn btn-raised byn-primary btn-sm"
+                    >
+                        Read more
+                    </Link>
                     </div>
-                </div>
+                </li>
             )
  })}
         
 
-        </div>
+        </ul>
         )
     }
 

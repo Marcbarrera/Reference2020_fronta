@@ -35,37 +35,37 @@ renderPost = (post) => {
             <p className="card-text">{post.title}</p> 
 
             <img
-                            src={`${
-                                process.env.REACT_APP_API_URL
-                            }/post/photo1/${post._id}`}
-                            alt={post.title}
-                            onError={i =>
-                                (i.target.src = `${DefaultPost}`)
-                            }
-                           
-                        />
+                src={`${
+                    process.env.REACT_APP_API_URL
+                }/post/photo1/${post._id}`}
+                alt={post.title}
+                onError={i =>
+                    (i.target.src = `${DefaultPost}`)
+                }
+                
+            />
               <img
-                            src={`${
-                                process.env.REACT_APP_API_URL
-                            }/post/photo2/${post._id}`}
-                            alt={post.title}
-                            onError={i =>
-                                (i.target.src = `${DefaultPost}`)
-                            }
-                           
-                        />
+                    src={`${
+                        process.env.REACT_APP_API_URL
+                    }/post/photo2/${post._id}`}
+                    alt={post.title}
+                    onError={i =>
+                        (i.target.src = `${DefaultPost}`)
+                    }
+                    
+                />
 
-                        <p className="card-text">{post.body}</p> 
-                        {/* substring es per previsualitar els primers 100 caracters a la carta */}
+                <p className="card-text">{post.body}</p> 
+                {/* substring es per previsualitar els primers 100 caracters a la carta */}
 
-                        <p className="font-italic mark">
+                <p className="font-italic mark">
 
-                            Posted by {" "}
-                            <Link to={`user/${posterId}`}>
-                                {posterName}{" "}
-                            </Link>
-                            on {new Date (post.created).toDateString()}
-                        </p>
+                    Posted by {" "}
+                    <Link to={`user/${posterId}`}>
+                        {posterName}{" "}
+                    </Link>
+                    on {new Date (post.created).toDateString()}
+                </p>
                         
             </div>
         </div>

@@ -12,7 +12,6 @@ import React from 'react'
                     <div className="photography-category"></div>
                     <div className="literature-category"></div>
                     <div className="fashion-category"></div>
-
                 </div>
 
             </div>
