@@ -9,11 +9,12 @@ import Users from "./user/Users";
 import Editprofile from "./user/Editprofile"
 import Categories from "./pages/Categories"
 import Music from "./pages/Music"
-
 import NewestPosts from './pages/NewestPosts'
 import WriteAPost from "./post/WriteAPost"
 import PrivateRoute from './auth/PrivateRoute'
 import Posts from "./post/Posts"
+import TopPosts from "./post/TopPosts"
+
 import SinglePost from "./post/SinglePost"
 
 
@@ -23,6 +24,7 @@ const MainRouter = () => (
         <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/posts" component={Posts}></Route>
+            <Route exact path="/topposts" component={TopPosts}></Route>
             <Route exact path="/post/:postId" component={SinglePost}></Route>
             <Route exact path="/categories" component={Categories}></Route>
             <Route exact path="/categories/music" component={Music}></Route>

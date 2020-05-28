@@ -19,11 +19,33 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         });
     }
 
-    renderPosts = posts => {
+    
+
+    render() {
+        const { posts } = this.state;
+        const array = posts
+        console.log("array")
+        console.log(array)
+        array.sort(function (a, b) {
+            if (a.likes.length > b.likes.length) {
+              return -1;
+            }
+            if (a.likes.length < b.likes.length) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+         console.log("despues")
+         console.log(array)
+        
         return (
+            <div className="container">
+                <h2>Posts</h2>
+                
         <ul className="row">
             
-            {posts.map((post, i) => {
+            {array.map((post, i) => {
 
                 const posterId = post.postedBy ? post.postedBy._id : "";
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
@@ -79,16 +101,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         
 
         </ul>
-        )
-    }
-
-    render() {
-        const { posts } = this.state;
         
-        return (
-            <div className="container">
-                <h2>Posts</h2>
-                {this.renderPosts(posts)}
                 
             </div>
         );

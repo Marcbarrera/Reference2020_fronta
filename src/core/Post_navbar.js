@@ -17,7 +17,7 @@ const Post_navbar = ({history}) => (
                 <Link style={isActive(history, "/posts")} to="/posts">Posts</Link>
             </li>
             <li className="nav-items">
-                <Link style={isActive(history, "/toppost")} to="/adeu">Top post</Link>
+                <Link style={isActive(history, "/topposts")} to="/topposts">Top post</Link>
             </li>
             <li className="nav-items">
                 <Link style={isActive(history, "/users")} to="/users">Users</Link>
