@@ -14,8 +14,9 @@ import WriteAPost from "./post/WriteAPost"
 import PrivateRoute from './auth/PrivateRoute'
 import Posts from "./post/Posts"
 import TopPosts from "./post/TopPosts"
-
 import SinglePost from "./post/SinglePost"
+import PageNotFound from './pages/PageNotFound'
+
 
 
 const MainRouter = () => (
@@ -35,7 +36,7 @@ const MainRouter = () => (
             <PrivateRoute exact path="/user/:userId" component={Profile}/>
             <PrivateRoute exact path="/user/edit/:userId" component={Editprofile}/>
             <PrivateRoute exact path="/writeapost" component={WriteAPost}/>
-
+            <Route component={PageNotFound}/>
         </Switch>
     </div>
 )

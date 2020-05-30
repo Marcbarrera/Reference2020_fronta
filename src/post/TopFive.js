@@ -19,11 +19,36 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         });
     }
 
-    renderPosts = posts => {
+    
+
+    render() {
+        const { posts } = this.state;
+        const array = posts
+        
+        array.sort(function (a, b) {
+            if (a.likes.length > b.likes.length) {
+              return -1;
+            }
+            if (a.likes.length < b.likes.length) {
+              return 1;
+            }
+            // a must be equal to b
+            return 0;
+          });
+         console.log("despues")
+         console.log(array)
+
+         const b =array.slice(0, 1);
+         console.log("holaaaa")
+         console.log(b)
+        
         return (
+            <div className="container">
+                <h2>Posts</h2>
+                
         <ul className="row">
             
-            {posts.map((post, i) => {
+            {b.map((post, i) => {
 
                 const posterId = post.postedBy ? post.postedBy._id : "";
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
@@ -56,8 +81,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                     />
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text"><strong>{post.category}</strong></p>
-                    <div className="card-text" dangerouslySetInnerHTML={{__html: post.body.substring(0,100)}}/>
-                    {/* <p className="card-text" dangerouslySetInnerHTML={{__html: post.bodysubstring(0,100)}}></p>  */}
+                    <p className="card-text">{post.body}</p> 
                     <p className="card-text">{post.likes.length} likes</p> 
 
                     <p className="font-italic mark">
@@ -80,20 +104,9 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         
 
         </ul>
-        )
-    }
-
-    render() {
-        const { posts } = this.state;
         
-        return (
-            <section className="post-section">
-            <div className="container">
-                <h2>Posts</h2>
-                {this.renderPosts(posts)}
                 
             </div>
-            </section>
         );
     }
 }

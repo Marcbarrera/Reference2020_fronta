@@ -24,8 +24,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
     render() {
         const { posts } = this.state;
         const array = posts
-        console.log("array")
-        console.log(array)
+        
         array.sort(function (a, b) {
             if (a.likes.length > b.likes.length) {
               return -1;
@@ -38,6 +37,8 @@ import DefaultPost from '../images/defaulPostImg.jpg'
           });
          console.log("despues")
          console.log(array)
+
+        
         
         return (
             <div className="container">

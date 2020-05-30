@@ -1,8 +1,9 @@
 
 import React, { Component } from 'react';
 import { singlePost, like, unlike } from './apiPost';
-import { Link, Redirect } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import DefaultPost from '../images/defaulPostImg.jpg'
+import ProfilePicture from '../user/ProfilePicture'
 
 import { isAuthenticated } from '../auth';
 
@@ -114,6 +115,8 @@ class SinglePost extends Component {
                     }
                     
                 />
+                                                    <ProfilePicture user={isAuthenticated().user}/>
+
                
 
                 {like ? (
@@ -133,9 +136,7 @@ class SinglePost extends Component {
                         {likes} Like
                     </h3>
                 )}
-
-                <p className="card-text">{post.body}</p>
-                <br />
+                <div className="card-text" dangerouslySetInnerHTML={{__html: post.body}}/>
                 <p className="font-italic mark">
                     Posted by <Link to={`${posterId}`}>{posterName} </Link>
                     on {new Date(post.created).toDateString()}
@@ -171,6 +172,7 @@ class SinglePost extends Component {
                                     <button onClick={this.deleteConfirmed} className="btn btn-raised btn-danger">
                                         Delete Post
                                     </button>
+
                                 </div>
                             </div>
                         )}
@@ -202,8 +204,9 @@ class SinglePost extends Component {
                 )}
 
             </div>
+
         );
     }
 }
 
-export default SinglePost;
+export default (SinglePost)

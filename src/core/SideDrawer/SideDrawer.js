@@ -10,22 +10,22 @@ const sideDrawer = props => {
     return(
         <nav className={drawerClasses}>
             <ul className="">
-                <li className="nav-items">
+                <li className="nav-items" onClick={() => props.close()}>
                     <Link to="/categories">Categories</Link>
                 </li>
-                <li className="nav-items">
+                <li className="nav-items" onClick={() => props.close()}>
                   <Link to="/newestposts">Newest posts</Link>
                 </li>
-            <li className="nav-items">
+            <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/adeu">Top post</Link>
             </li>
-            <li className="nav-items">
+            <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/users">Users</Link>
             </li>
-            <li className="nav-items">
+            <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/post/created">Write a post</Link>
             </li>
-            <li className="nav-items">
+            <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/myposts">My posts</Link>
             </li>
         </ul>

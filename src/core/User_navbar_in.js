@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router-dom';
 import {isAuthenticated, signout} from '../auth/index';
+import ProfilePicture from '../user/ProfilePicture'
 
 const isActive = (history, path) => {
     if(history.location.pathname === path) return {color: "#ff9900"}
@@ -12,7 +13,10 @@ const User_navbar = ({history}) => (
         <ul className="nav nav-tabs">
             <li className="nav-item">
                 <span>
-                Hi {isAuthenticated().user.name}!
+                Hi <Link to={`/user/${isAuthenticated().user._id}`} 
+                     style={isActive(history,`/user/${isAuthenticated().user._id}`)}>
+                    {isAuthenticated().user.name}
+                    </Link>!  
                 </span> 
             </li>
             <li className="nav-item">
@@ -21,15 +25,25 @@ const User_navbar = ({history}) => (
                     Signout
                 </span> 
             </li>
-            <li className="nav-item">
-                    <Link to={`/user/${isAuthenticated().user._id}`} 
+            <li className="user_menu">
+                <div className="image-profile-div">
+                <ProfilePicture user={isAuthenticated().user}/>
+
+                    {/* <Link to={`/user/${isAuthenticated().user._id}`} 
                      style={
                      isActive(
                          history, 
                          `/user/${isAuthenticated().user._id}`
                          )}>
                     {isAuthenticated().user.name}
-                    </Link>                    
+                    </Link>      */}
+                    {/* <ul className="user_menu_dropdown">
+                        <li>hola</li>
+                        <li>hola</li>
+                        <li>hola</li>
+                        <li>hola</li>
+                    </ul>       */}
+                </div>         
             </li>
         </ul>
     </nav>

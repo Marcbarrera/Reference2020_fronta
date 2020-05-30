@@ -38,6 +38,7 @@ class Editprofile extends Component {
         this.userData = new FormData();
         const userId = this.props.match.params.userId;
         this.init(userId);      
+        
     }
 
     isValid = () => {
@@ -101,8 +102,42 @@ class Editprofile extends Component {
 
     
 
-    updateForm = (name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio) => (
-        <form>
+    // updateForm = (name, last_name, user, photoUrl, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio) => (
+        
+    // )
+
+    render() {
+        const {id, name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio, redirectToProfile, error, loading} = this.state;
+
+        if (redirectToProfile){
+            return <Redirect to={`/user/${id}`}/>
+        }
+
+        const photoUrl = `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}`;
+
+
+        return (
+            <section className="edit-profile-section">
+                <div className="container">
+                    <h2>Edit Profile</h2>
+                    
+                    <div className="alert" style={{display:error ? "" : "none"}}>
+                        {error}
+                    </div>
+
+                
+                    {loading ? (
+                    <div className="text-center">
+                        <h2>Loading...</h2>
+                    </div>
+                    ) : (
+                    ""
+                    )}
+
+                    
+
+                    {/* {this.updateForm(name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio)} */}
+                    <form>
                     <div className="form-first-row">
 
                         <div className="form-first-row-first-column">
@@ -111,6 +146,9 @@ class Editprofile extends Component {
                             <label className="text-muted">Profile Picture</label>
                             <input onChange={this.handleChange ("photo")} type="file" accept="image/*" className="form-control" />
                         </div>
+                        <img src={photoUrl}
+                    onError={i => (i.target.src = `${DefaultUserImage}`)}
+                    alt={name}/>
                         </div>
 
                     
@@ -183,43 +221,6 @@ class Editprofile extends Component {
                             </button>
                     </div>
         </form>
-    )
-
-    render() {
-        const {id, name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio, redirectToProfile, error, loading} = this.state;
-
-        if (redirectToProfile){
-            return <Redirect to={`/user/${id}`}/>
-        }
-
-        const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}`
-        : DefaultUserImage; 
-
-
-        return (
-            <section className="edit-profile-section">
-                <div className="container">
-                    <h2>Edit Profile</h2>
-                    
-                    <div className="alert" style={{display:error ? "" : "none"}}>
-                        {error}
-                    </div>
-
-                
-                    {loading ? (
-                    <div className="text-center">
-                        <h2>Loading...</h2>
-                    </div>
-                    ) : (
-                    ""
-                    )}
-
-                    {/* <img src={photoUrl}
-                    onError={i => (i.target.src = `${DefaultUserImage}`)}
-                    alt={name}/> */}
-
-                    {this.updateForm(name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio)}
-
                 </div>
             </section>
         )

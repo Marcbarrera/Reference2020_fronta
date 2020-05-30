@@ -31,7 +31,7 @@ class App extends Component {
   return (
   <div style={{height: '100%'}}>
     <BrowserRouter>
-      <SideDrawer show={this.state.SideDrawerOpen}/>
+      <SideDrawer close={this.backdropClickHandler} show={this.state.SideDrawerOpen}/>
       {backdrop}
       <Header drawerClickHandler={this.drawerToggleClickHandler} />
       <MainRouter/>

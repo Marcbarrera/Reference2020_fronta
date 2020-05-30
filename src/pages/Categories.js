@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom'
             <h2>CATEGORIES</h2>
             <div className="container">
                 <div className="categories-wrapper">
-                    <Link to="/categories/music" ><div className="music-category">MUSIC</div></Link>
+                    <div className="music-category"><Link to="/categories/music">MUSIC</Link></div>
                     <div className="cinema-category"></div>
                     <div className="finearts-category"></div>
                     <div className="photography-category"></div>

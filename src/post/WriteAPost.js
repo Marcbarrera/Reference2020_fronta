@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { isAuthenticated } from '../auth'
 import {create, addPhoto} from './apiPost'
 import { Redirect } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react';
 // import CKEditor from '@ckeditor/ckeditor5-react';
 // import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -80,7 +81,6 @@ class WriteAPost extends Component {
         }else{
             fileSize = 0;
         } 
-
         this.postData.set(name, value);
         this.setState({ [name]: value, fileSize });
         // this.setState({ [name]: value1, fileSize1 });
@@ -115,7 +115,7 @@ class WriteAPost extends Component {
             const token = isAuthenticated().token;
            
             create(userId, token, this.postData).then(data => {
-
+                console.log(data)
                 if (data.error){
                 this.setState({ error: data.error });
                 }
@@ -130,16 +130,16 @@ class WriteAPost extends Component {
     
    handleUploadPhoto = name => e => {
     this.setState({ error: "" });
-    this.postData.set('preorder', e.target.value);
+    this.postData.set(name, e.target.value);
     const token = isAuthenticated().token;
     addPhoto(token, this.postData)
         .then(r => this.setState({[name]: r.image}))
         .catch(e => console.log(e))
    }
 
-    handleOnChange = (e, editor) => {
-    console.log(editor.getData())
-    this.setState({body:editor.getData})
+    handleOnChange = (body) => {
+        this.postData.set('body', body)
+       this.setState({body})
 }
    
 
@@ -153,7 +153,7 @@ class WriteAPost extends Component {
 
     render() {
         const {  title, body, user, category, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
-        console.log(this.state)
+        console.log(body)
         if (redirectToProfile){
             return <Redirect to={`/user/${user._id}`}/> 
         }
@@ -170,13 +170,13 @@ class WriteAPost extends Component {
                 <div className="alert" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>
-                {/* {loading ? (
+                {loading ? (
                 <div className="jumbotron text-center">
                     <h2>Loading...</h2>
                 </div>
                 ) : (
                 ""
-                )} */}
+                )}
  
                 {/* <img src={photoUrl}
                 onError={i => (i.target.src = `${DefaultUserImage}`)}
@@ -263,8 +263,26 @@ class WriteAPost extends Component {
 
                     <div className="form-group">
                         <label className="text-muted">Body</label>
-                        {/* <textarea id="mytextarea" onChange={this.handleChange("body")} type="text" value={body} className="form-control"/> */}
-                        <textarea onChange={this.handleChange("body")} type="text" value={body} className="form-control"/>
+                        {/* <textarea id="mytextarea" onChange={() => this.handleChange("body")} type="text" value={body} className="form-control"/> */}
+                     <Editor
+                        initialValue="<p>This is the initial content of the editor</p>"
+                        init={{
+                        height: 500,
+                        menubar: false,
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                            'undo redo | formatselect | bold italic backcolor | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent | removeformat | help'
+                        }}
+                        onEditorChange={this.handleOnChange}
+                    />
+                       
+                        {/* <textarea onChange={this.handleChange("body")} type="text" value={body} className="form-control"/> */}
 
                         
                         {/* <CKEditor

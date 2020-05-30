@@ -15,7 +15,6 @@ class Profile extends Component {
         error:"",
         posts: []
     }
-
  
     init = userId => {
         const token = isAuthenticated().token;
@@ -43,7 +42,9 @@ class Profile extends Component {
 
     componentDidMount() {
         const userId = this.props.match.params.userId;
-        this.init(userId);      
+        this.init(userId); 
+        console.log("holaaaaa")     
+        console.log(this.props)
     }
 
     componentWillReceiveProps(props) {
