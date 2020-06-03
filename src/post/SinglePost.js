@@ -137,6 +137,7 @@ class SinglePost extends Component {
                     </h3>
                 )}
                 <div className="card-text" dangerouslySetInnerHTML={{__html: post.body}}/>
+                {/* <div>{post.body}</div> */}
                 <p className="font-italic mark">
                     Posted by <Link to={`${posterId}`}>{posterName} </Link>
                     on {new Date(post.created).toDateString()}
@@ -192,7 +193,8 @@ class SinglePost extends Component {
         }
 
         return (
-            <div className="container">
+        <section className="single-post-section">
+                        <div className="container">
                 <h2 className="display-2 mt-5 mb-5">{post.title}</h2>
 
                 {!post ? (
@@ -204,6 +206,7 @@ class SinglePost extends Component {
                 )}
 
             </div>
+        </section>
 
         );
     }

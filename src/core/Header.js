@@ -6,18 +6,31 @@ import Post_navbar from './Post_navbar'
 import { Link, withRouter } from 'react-router-dom';
 import {isAuthenticated} from '../auth/index';
 import DrawerToggleButton from './SideDrawer/DrawerToggleBurger'
+import UserSideDrawer from './SideDrawer/UserSideDrawer'
+import ProfilePicture from '../user/ProfilePicture'
 
 
 const Header = props => (
     <header>
         <div className="header-wrapper">
-            <div className="top-header">
-                <h1><Link to="/">Reference</Link></h1>
-            </div>
+                <div className="top-header">
+                    <div className="b-menu-mv">
+                        <DrawerToggleButton click={props.drawerClickHandler}/>
+                    </div>
+                    <div className="header-title">
+                        <h1><Link to="/">Reference</Link></h1>
+                    </div>
+                    <div className="u-menu-mv">
+                    
+                   <button onClick={props.userClickHandler}> {isAuthenticated()? <ProfilePicture user={isAuthenticated().user}/>  : <User_navbar_out/> }</button>
+
+                    {/* <ProfilePicture user={isAuthenticated().user}/> */}
+                        
+                    </div>
+                </div>
             <div className="bottom-header">
                        
-            <DrawerToggleButton click={props.drawerClickHandler}/> <Post_navbar/>   <div className="spacer"></div>  {isAuthenticated()? <User_navbar_in/>  : <User_navbar_out/> }
-                {/* M'encanta aquest div class spacer */}
+             <Post_navbar/> <DrawerToggleButton click={props.drawerClickHandler} /> <div className="spacer"></div>  {isAuthenticated()? <User_navbar_in/>  : <User_navbar_out/> }
             </div>
        </div>
     </header>

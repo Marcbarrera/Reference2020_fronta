@@ -17,7 +17,7 @@ const sideDrawer = props => {
                   <Link to="/newestposts">Newest posts</Link>
                 </li>
             <li className="nav-items" onClick={() => props.close()}>
-                <Link to="/adeu">Top post</Link>
+                <Link to="/topposts">Top post</Link>
             </li>
             <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/users">Users</Link>

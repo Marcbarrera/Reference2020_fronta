@@ -57,7 +57,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                     <h5 className="card-title">{post.title}</h5>
                     <p className="card-text"><strong>{post.category}</strong></p>
                     <div className="card-text" dangerouslySetInnerHTML={{__html: post.body.substring(0,100)}}/>
-                    {/* <p className="card-text" dangerouslySetInnerHTML={{__html: post.bodysubstring(0,100)}}></p>  */}
+                    {/* <p className="card-text">{post.body.substring(0,100)}></p>  */}
                     <p className="card-text">{post.likes.length} likes</p> 
 
                     <p className="font-italic mark">
@@ -89,7 +89,6 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         return (
             <section className="post-section">
             <div className="container">
-                <h2>Posts</h2>
                 {this.renderPosts(posts)}
                 
             </div>

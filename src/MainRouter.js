@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Home from "./core/Home";
-// import Header from "./core/Header";
 import Signup from "./user/Signup";
 import Signin from "./user/Signin";
 import Profile from "./user/Profile";
@@ -21,13 +20,17 @@ import PageNotFound from './pages/PageNotFound'
 
 const MainRouter = () => (
     <div>
-        {/* <Header/> */}
         <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/posts" component={Posts}></Route>
             <Route exact path="/topposts" component={TopPosts}></Route>
             <Route exact path="/post/:postId" component={SinglePost}></Route>
             <Route exact path="/categories" component={Categories}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
+            <Route exact path="/categories/music" component={Music}></Route>
             <Route exact path="/categories/music" component={Music}></Route>
             <Route exact path="/newestposts" component={NewestPosts}></Route>
             <Route exact path="/users" component={Users}></Route>
@@ -39,6 +42,7 @@ const MainRouter = () => (
             <Route component={PageNotFound}/>
         </Switch>
     </div>
+
 )
 
 export default MainRouter;

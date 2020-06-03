@@ -8,10 +8,13 @@
   }
   
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      sans-serif;
-      height:100%;
-
+    font-family: futura;
+    min-height:100%;
+    display: flex;
+    flex-direction: column;
+     
+      // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',' futura',  'Roboto', 'Oxygen',
+      // sans-serif;
   }
   
   code {
@@ -24,6 +27,9 @@
   
   .side-drawer{
     display: none;
+  }
+  .user-side-drawer{
+    display:none;
   }
   header{
     display: flex;
@@ -64,6 +70,13 @@
                           color: hotpink;
                         }
               }
+              .u-menu-mv{
+                  display:none;
+              }
+              .toggle-button{
+                display: none;
+              }
+
           }
   
           .bottom-header{
@@ -118,47 +131,83 @@
                   display:flex;
                   flex-direction: row;
                   align-items: center;
+                  margin-top: 8px;
                     ul{
                       display: flex;
-                      list-style-type: none;    
-                      li{
-                          text-decoration: none;
-                          padding-left: 10px;
+                      list-style-type: none; 
+                      
+                      .nav-user-name{
+                        text-decoration: none;
+                        padding-left: 20px;
+
+
+                      } 
+                      .nav-item-search{
+                        display:none;
+                        padding-left: 20px;
+                        max-width: 20px;  
 
                       }
+  
+                      .nav-item{
+                          text-decoration: none;
+                          padding-left: 20px;
+                          max-width: 20px;  
 
-                      .user_menu{
-                        color: rgb(216, 25, 25);
-                        display: block;
-                        transition-duration: 0.5s;
+                      }
+                      .logout-in{
+                        padding-left: 20px;
+                      }
+                      .user-menu-foto{
+                        padding-left: 20px;
+                          margin-top:-4px;
 
-                          ul{
-                            display:flex;
-                            flex-direction: column;
-                            position: absolute;
-                            right:10.5%;
-                            min-width: 20%;
-                            margin-top: 10px;
-                            visibility: hidden;
-                            opacity: 0;
-                            transition: all 3s ease;
-                            display: none;
-                            background-color: salmon;
+                      }
+                      .image-profile-div{
+                        max-width: 30px;
+                        border: 1px;
 
-                          }
+                        position:relative;
+                       
+                          img{
+                            position: relative;
+                            border-radius: 50%;
+
+                            width: 100%;}
+                      }
+
+                      // .user_menu{
+                      //   color: rgb(216, 25, 25);
+                      //   display: block;
+                      //   transition-duration: 0.5s;
+
+                      //     ul{
+                      //       display:flex;
+                      //       flex-direction: column;
+                      //       position: absolute;
+                      //       right:10.5%;
+                      //       min-width: 20%;
+                      //       margin-top: 10px;
+                      //       visibility: hidden;
+                      //       opacity: 0;
+                      //       transition: all 3s ease;
+                      //       display: none;
+                      //       background-color: salmon;
+
+                      //     }
                           
 
-                      }
-                      .user_menu:hover > ul,
-                          ul li ul:hover {
-                            visibility: visible;
-                            opacity: 1;
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            transition-duration: 4s;
-                            transition-delay: 2s;
-                          }
+                      
+                      // .user_menu:hover > ul,
+                      //     ul li ul:hover {
+                      //       visibility: visible;
+                      //       opacity: 1;
+                      //       display: flex;
+                      //       flex-direction: column;
+                      //       align-items: center;
+                      //       transition-duration: 4s;
+                      //       transition-delay: 2s;
+                      //     }
                     }
                 }
             }
@@ -180,7 +229,7 @@
       width:1140px;
       width:80%;
       margin: 3rem auto;
-      height:100vh;
+      height:70vh;
         // background-color: red;
   
         .categories-wrapper{
@@ -190,37 +239,47 @@
           justify-content: space-between;
   
               .music-category {
-                background-color: red;
                 width:33%;
-                height: 30vh;
+                height: 255px;
+                overflow: hidden;
+                  img{width:105%;
+                  // overflow: hidden;
+                  }
               }
               .cinema-category {
-                background-color: red;
-                width:33%;
-                height: 30vh;
+                max-width:33%;
+                height: 255px;
+                overflow: hidden;
+                  img{width:120%;
+                  }
               }
               .finearts-category {
-                background-color: red;
                 width:33%;
-                height: 30vh;
+                height: 255px;
+                overflow: hidden;
+                  img{width:100%;
+                  }
               }
               .photography-category {
-                margin-top: 6px;
-                background-color: red;
                 width:33%;
-                height: 30vh;
+                height: 255px;
+                overflow: hidden;
+                  img{width:100%;
+                  }
               }
               .literature-category {
-                margin-top: 6px;
-                background-color: red;
                 width:33%;
-                height: 30vh;
+                height: 255px;
+                overflow: hidden;
+                  img{width:100%;
+                  }
               }
               .fashion-category {
-                margin-top: 6px;
-                background-color: red;
                 width:33%;
-                height: 30vh;
+                height: 255px;
+                overflow: hidden;
+                  img{width:100%;
+                  }
               }
         }
   
@@ -228,6 +287,24 @@
     } 
   
   }
+.single-post-section{
+
+              .container{
+                display:flex;
+                flex-direction: column;
+                width:1140px;
+                width:80%;
+                margin: 3rem auto;
+                height:100vh;
+
+
+                .user-menu-foto {
+                  width:20px;
+                }
+              }
+    
+}
+
   .post-section {
 
       .container{
@@ -236,7 +313,6 @@
         width:1140px;
         width:80%;
         margin: 3rem auto;
-        height:100vh;
         img{
           width:200px;
         }
@@ -254,7 +330,6 @@
           flex-direction: row;
           width:1140px;
           margin:  auto;
-          background-color: red;
           
           .first-column{
             padding:5%;
@@ -442,17 +517,35 @@
               color:white;
             }
         }
+      
         
     }
   
-  
-    
-  
+  }
+ 
+  .container-not-found{
+    display:flex;
+      flex-direction: column;
+      width:1140px;
+      width:80%;
+      margin: 1rem auto;
+      height:60vh;
+        h2{
+          text-align: center;
+        }
+
   }
   
   
-  
-  
+  footer{
+          
+    // background-color: blue;
+    display: flex;
+    flex-direction: row;
+    align-self: flex-end;
+    min-height:10vh;
+    margin: auto;
+     }
   
   
   
@@ -487,7 +580,6 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       sans-serif;
       height:100%;
-      background-color: red;
     }
     
     code {
@@ -564,6 +656,28 @@
               flex-direction: row;
               width:100%;
               // background-color: yellow;
+              .toggle-button{
+                display:none;
+                flex-direction: column;
+                justify-content: space-around;
+                height:24px;
+                width: 30px;
+                background-color: transparent;
+                border:none;
+                cursor:pointer;
+                margin-top: 8px;
+                padding:0px;
+                box-sizing: border-box;
+
+                  .toggle-button-line{
+                    width: 30px;
+                    height:2px;
+                    background-color: black;
+                  }
+              }
+              .toggle-button:focus {
+                outline:none;
+              }
             }
     
             .bottom-header{
@@ -572,29 +686,29 @@
               justify-content: space-between;
               width:100%;
               height: 40px;
-  
-                .toggle-button{
-                  display:flex;
-                  flex-direction: column;
-                  justify-content: space-around;
-                  height:24px;
-                  width: 30px;
-                  background-color: transparent;
-                  border:none;
-                  cursor:pointer;
-                  margin-top: 8px;
-                  padding:0px;
-                  box-sizing: border-box;
-  
-                    .toggle-button-line{
-                      width: 30px;
-                      height:2px;
-                      background-color: black;
-                    }
-                }
-                .toggle-button:focus {
-                  outline:none;
-                }
+                
+              .toggle-button{
+                display:flex;
+                flex-direction: column;
+                justify-content: space-around;
+                height:24px;
+                width: 30px;
+                background-color: transparent;
+                border:none;
+                cursor:pointer;
+                margin-top: 8px;
+                padding:0px;
+                box-sizing: border-box;
+
+                  .toggle-button-line{
+                    width: 30px;
+                    height:2px;
+                    background-color: black;
+                  }
+              }
+              .toggle-button:focus {
+                outline:none;
+              }
     
                 
                 .post-navbar{
@@ -711,38 +825,32 @@
           justify-content: space-between;
   
               .music-category {
-                background-color: yellow;
                 width:49.5%;
                 height: 30vh;
               }
               .cinema-category {
-                background-color: blue;
                 width:49.5%;
                 height: 30vh;
               }
               .finearts-category {
                 margin-top: 6px;
   
-                background-color: green;
                 width:49.5%;
                 height: 30vh;
               }
               .photography-category {
                 margin-top: 6px;
   
-                background-color: red;
                 width:49.5%;
                 height: 30vh;
               }
               .literature-category {
                 margin-top: 6px;
-                background-color: orange;
                 width:49.5%;
                 height: 30vh;
               }
               .fashion-category {
                 margin-top: 6px;
-                background-color: pink;
                 width:49.5%;
                 height: 30vh;
               }
@@ -752,6 +860,8 @@
     } 
   
   }
+ 
+  
   }
   
   
@@ -780,11 +890,13 @@
       font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
     }
+    h1{
+      text-align: center;
+    }
     
     .App {
       
     }
-  
     .side-drawer{
       display:block;
       height:100%;
@@ -823,6 +935,44 @@
       transform: translateX(0)
     }
   
+    .user-side-drawer{
+      display:block;
+      height:100%;
+      background-color: white;
+      box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top:0;
+      right:0;
+      width:45%;
+      max-width:250px;
+      z-index: 200;
+      transform: translateX(200%);
+      transition: transform 0.3s ease-out;
+  
+         ul{
+  
+           list-style: none;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           height:55%;
+  
+           li{
+             margin:0.8rem 0;
+  
+              a{
+                color:tomato;
+                text-decoration: none;
+                font-size: 1.2rem;
+              }
+          }
+        }
+    }
+    .user-side-drawer.open{
+      transform: translateX(0)
+    }
+  
     .backdrop{
       position: fixed;
       width: 100%;
@@ -850,38 +1000,58 @@
               flex-direction: row;
               width:100%;
               // background-color: yellow;
+
+              .b-menu-mv{
+                display:flex;
+                    .toggle-button{
+                      display:flex;
+                      flex-direction: column;
+                      justify-content: space-around;
+                      height:24px;
+                      width: 30px;
+                      background-color: transparent;
+                      border:none;
+                      cursor:pointer;
+                      margin-top: 8px;
+                      padding:0px;
+                      box-sizing: border-box;
+
+                        .toggle-button-line{
+                          width: 30px;
+                          height:2px;
+                          background-color: black;
+                        }
+                    }
+                    .toggle-button:focus {
+                      outline:none;
+                    }
+                  }
+
+
+            .header-title{
+              display:flex;
+              justify-content: center;
+              flex:1;
             }
-    
+            .u-menu-mv{
+              display:flex;
+              width: 30px;
+              height: 30px;
+              margin-top: 7px;
+
+                      .user-foto{
+                        position: relative;
+                        border-radius: 50%;
+                      }
+                  
+                }
+        }
             .bottom-header{
               display:flex;
               flex-direction: row;
-              justify-content: space-between;
+              justify-content: center;
               width:100%;
               height: 40px;
-  
-                .toggle-button{
-                  display:flex;
-                  flex-direction: column;
-                  justify-content: space-around;
-                  height:24px;
-                  width: 30px;
-                  background-color: transparent;
-                  border:none;
-                  cursor:pointer;
-                  margin-top: 8px;
-                  padding:0px;
-                  box-sizing: border-box;
-  
-                    .toggle-button-line{
-                      width: 30px;
-                      height:2px;
-                      background-color: black;
-                    }
-                }
-                .toggle-button:focus {
-                  outline:none;
-                }
-    
                 
                 .post-navbar{
                   display:none;
@@ -902,7 +1072,7 @@
                     }
                   }
                   .user-navbar-not-in{
-                    display:flex;
+                    display:none;
                     flex-direction: row;
                     align-items: center;
                       ul{
@@ -924,10 +1094,23 @@
                     align-items: center;
                       ul{
                         display: flex;
-                        list-style-type: none;    
+                        list-style-type: none;  
+                        .nav-item-search{
+                          display:flex;
+                          padding-left: 20px;
+                          max-width: 20px;  
+  
+                        }
+                          
                         li{
                             text-decoration: none;
                             padding-left: 10px;
+                        }
+                        .logout-in{
+                          display:none;
+                        }
+                        .user-menu-foto{
+                          display:none;
                         }
                       }
     
@@ -988,7 +1171,7 @@
         width:1140px;
         width:100%;
         margin: 3rem auto;
-        height:100vh;
+        min-height:185vh;
           // background-color: red;
     
           .categories-wrapper{
@@ -1038,10 +1221,7 @@
                   height: 30vh;
                 }
           }
-    
-    
       } 
-    
     }
   
   // edit profile page
@@ -1215,6 +1395,7 @@
     
   
   }
+
   
   
   }

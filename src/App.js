@@ -3,13 +3,17 @@ import {BrowserRouter} from 'react-router-dom';
 import MainRouter from './MainRouter';
 import Header from './core/Header'
 import SideDrawer from './core/SideDrawer/SideDrawer';
+import UserSideDrawer from './core/SideDrawer/UserSideDrawer'
 import Backdrop from './core/Backdrop/Backdrop';
+import Footer from './core/Footer'
+
 
 
 class App extends Component {
 
   state = {
-    SideDrawerOpen: false
+    SideDrawerOpen: false,
+    UserSideDrawerOpen:false
   };
 
   drawerToggleClickHandler = () => {
@@ -18,24 +22,36 @@ class App extends Component {
     }); 
   }
 
+  UserDrawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {UserSideDrawerOpen: !prevState.UserSideDrawerOpen}
+    }); 
+  }
+
+
   backdropClickHandler = () => {
-    this.setState({SideDrawerOpen: false})
+    this.setState({SideDrawerOpen: false, UserSideDrawerOpen:false})
   }
 
   render () {
     let backdrop;
     
-    if (this.state.SideDrawerOpen){
+    if (this.state.SideDrawerOpen || this.state.UserSideDrawerOpen ){
       backdrop = <Backdrop click={this.backdropClickHandler}/>;
     }
+  
   return (
   <div style={{height: '100%'}}>
     <BrowserRouter>
       <SideDrawer close={this.backdropClickHandler} show={this.state.SideDrawerOpen}/>
       {backdrop}
-      <Header drawerClickHandler={this.drawerToggleClickHandler} />
+      <UserSideDrawer close={this.backdropClickHandler} show={this.state.UserSideDrawerOpen}/>
+      {backdrop}
+      <Header drawerClickHandler={this.drawerToggleClickHandler}  userClickHandler={this.UserDrawerToggleClickHandler}/>
       <MainRouter/>
     </BrowserRouter>
+    <Footer/>
+
   </div>
     )
   }

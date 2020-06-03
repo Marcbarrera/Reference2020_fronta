@@ -265,10 +265,10 @@ class WriteAPost extends Component {
                         <label className="text-muted">Body</label>
                         {/* <textarea id="mytextarea" onChange={() => this.handleChange("body")} type="text" value={body} className="form-control"/> */}
                      <Editor
-                        initialValue="<p>This is the initial content of the editor</p>"
+                        initialValue=""
                         init={{
                         height: 500,
-                        menubar: false,
+                        menubar: true,
                         plugins: [
                             'advlist autolink lists link image charmap print preview anchor',
                             'searchreplace visualblocks code fullscreen',
