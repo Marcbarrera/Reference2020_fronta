@@ -3,9 +3,6 @@ import { isAuthenticated } from '../auth'
 import {create, addPhoto} from './apiPost'
 import { Redirect } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
-// import CKEditor from '@ckeditor/ckeditor5-react';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
 
 
 
@@ -164,8 +161,9 @@ class WriteAPost extends Component {
      
 
         return (
+           <section className="write-a-post-section"> 
             <div className="container">
-                <h2>Write a post</h2>
+                <h2>WRITE A POST</h2>
                 
                 <div className="alert" style={{display:error ? "" : "none"}}>
                     {error}
@@ -185,13 +183,13 @@ class WriteAPost extends Component {
                 {/* {this.newPostForm(title, body)} */}
 
                 <form>
-                    <div className="form-group">
-                        <label className="text-muted"><h3>Title</h3>Title</label>
+                    <div className="title-group">
+                        <label className="text-muted"><h3>Title</h3></label>
                         <input onChange={this.handleChange ("title")} type="text" value={title} className="form-control" />
                     </div> 
-                    <div className="form-group">
-                        <label className="text-muted">Category</label>
-                            <select name='category' value={category} onChange = {this.DropdownChange}>
+                    <div className="category-select-row">
+                        <label className="text-muted"><h3>Category</h3></label>
+                            <select className="select-input" name='category' value={category} onChange = {this.DropdownChange}>
                                 <option value = "Music" selected>Music</option>
                                 <option value = "Cinema">Cinema</option>
                                 <option value = "Fine Arts">Fine Arts</option>
@@ -200,17 +198,31 @@ class WriteAPost extends Component {
                                 <option value = "Photography">Photography</option>
                             </select>
                     </div>
-                    <div className="form-group">
-                        <label className="text-muted">first Picture</label>
-                        <input onChange={this.handleChange("photo1")} type="file" accept="image/*" className="form-control" />
-                    </div> 
-                    <div className="form-group">
-                        <label className="text-muted">second Picture</label>
-                        <input onChange={this.handleChange("photo2")} type="file" accept="image/*" className="form-control" />
-                    </div> 
 
-                    <h3>Content</h3>
-                    <h4>Select the type of content of the <strong>TARGET</strong></h4>
+                    <div className="presentation">
+                        <h3>
+                            Presentation
+                        </h3>
+                        <p>
+                            Upload the thumbnail pictures that will show up as a presentation of your post
+                        </p>
+                    </div>
+                    <div className="thumbnails-wrapper">
+                        <div className="first-thumbnail">
+                            <label className="text-muted">First thumbnail</label>
+                            <input onChange={this.handleChange("photo1")} type="file" accept="image/*" className="form-control" />
+                        </div> 
+                        <div className="spacer-column">
+
+                        </div>
+                        <div className="second-thumbnail">
+                            <label className="text-muted">Second thumbnail</label>
+                            <input onChange={this.handleChange("photo2")} type="file" accept="image/*" className="form-control" />
+                        </div> 
+                    </div>
+
+                    <h3 className="content-title">Content</h3>
+                    <p className="content-explanation">Select the type of content of the <strong>TARGET</strong></p>
                     <div className="form-group">
                         <label className="text-muted">Target content</label>
                         <select name='target_content' value={target_content} onChange = {this.DropdownContentChangeTarget}>
@@ -262,7 +274,7 @@ class WriteAPost extends Component {
                    
 
                     <div className="form-group">
-                        <label className="text-muted">Body</label>
+                        <label className="text-muted"><h3>Explanation</h3></label>
                         {/* <textarea id="mytextarea" onChange={() => this.handleChange("body")} type="text" value={body} className="form-control"/> */}
                      <Editor
                         initialValue=""
@@ -283,32 +295,7 @@ class WriteAPost extends Component {
                     />
                        
                         {/* <textarea onChange={this.handleChange("body")} type="text" value={body} className="form-control"/> */}
-
-                        
-                        {/* <CKEditor
-                    editor={ ClassicEditor }
-                    data="<p>Write a post!</p>"
-                    onInit={ editor => {
-                        // You can store the "editor" and use when it is needed.
-                        console.log( 'Editor is ready to use!', editor );
-                    } }
-                    onChange={ ( event, editor ) => {
-                        const data = editor.getData();
-                        console.log( { event, editor, data } );
-                    } }
-                    onBlur={ ( event, editor ) => {
-                        console.log( 'Blur.', editor );
-                    } }
-                    onFocus={ ( event, editor ) => {
-                        console.log( 'Focus.', editor );
-                    } }
-                /> */}
-
-
-                {/* <CKEditor
-                editor={ClassicEditor}
-                onChange={this.handleOnChange}
-                 /> */}
+                 
                     </div>  
                     
                     <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">
@@ -317,6 +304,7 @@ class WriteAPost extends Component {
                 </form>
 
             </div>
+            </section>
         )
     }
 }

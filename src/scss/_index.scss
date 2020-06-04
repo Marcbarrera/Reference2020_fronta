@@ -229,7 +229,7 @@
       width:1140px;
       width:80%;
       margin: 3rem auto;
-      height:70vh;
+      height:100vh;
         // background-color: red;
   
         .categories-wrapper{
@@ -536,15 +536,119 @@
 
   }
   
-  
+  .write-a-post-section {
+      .container{
+      display:flex;
+      flex-direction: column;
+      width:1140px;
+      width:80%;
+      margin: 1rem auto;
+      height:120vh;
+      h2{
+        text-align: center;
+        margin-top:40px
+      }
+      
+      .title-group{
+        display:flex;
+        flex-direction: column;
+        margin-top:30px;
+          input{
+            margin-top:10px;
+            max-width:300px;
+          }
+      
+      }
+       
+      .category-select-row{
+        display:flex;
+        flex-direction: column;
+        margin-top:30px;
+          .select-input{
+            margin-top:10px;
+            max-width:100px;
+          }
+        } 
+
+      .presentation{
+        margin-top:30px;
+              p{
+                margin-top:10px;
+              }
+      }
+      .thumbnails-wrapper{
+        display:flex;
+        flex-direction: row;
+        justify-content:center;
+
+        .first-thumbnail{
+          margin-top:30px;
+          display:flex;
+          flex-direction:column;
+        }
+        .spacer-column{
+          width:100px;
+        }
+        .second-thumbnail{
+          margin-top:30px;
+          display:flex;
+          flex-direction:column
+        }
+
+      }
+      .content-title{
+          margin-top:150px;
+        }
+        .content-explanation{
+          margin-top:20px;
+
+        }
+        
+    }
+  }
   footer{
           
-    // background-color: blue;
+    background-color: tomato;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-self: flex-end;
-    min-height:10vh;
+    min-height:15vh;
     margin: auto;
+
+    .footer-top{
+        display: flex;
+
+        .container{
+          display:flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width:1140px;
+          margin: auto;
+          height:10vh;
+          color:white;
+            ul {
+              list-style-type: none;
+              display: flex;
+              align-items: center;
+              li{
+                padding-right: 30px;
+              }
+            }
+            .spacer-column{
+              flex:1;
+            }
+        }
+    }
+
+    .footer-bottom{
+      background-color: white;
+      height:5vh;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
      }
   
   
