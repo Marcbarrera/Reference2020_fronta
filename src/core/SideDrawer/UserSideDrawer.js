@@ -1,7 +1,9 @@
 import React from 'react';
-import {Link,} from 'react-router-dom';
+import {withRouter, Link,} from 'react-router-dom';
+import {isAuthenticated, signout} from '../../auth/index';
 
-const userSideDrawer = props => {
+
+const userSideDrawer = (props) => {
     let userDrawerClasses = 'user-side-drawer';
     if (props.show) {
         userDrawerClasses = 'user-side-drawer open';
@@ -11,19 +13,29 @@ const userSideDrawer = props => {
         <nav className={userDrawerClasses}>
             <ul className="">
                 <li className="nav-items" onClick={() => props.close()}>
-                    <Link to="/categories">Profile</Link>
+                    <Link to="/user/:userId">Profile</Link>
                 </li>
                 <li className="nav-items" onClick={() => props.close()}>
-                    <Link to="/categories">Profile</Link>
+                    <Link to="/user/:userId">Profile</Link>
                 </li>
                 <li className="nav-items" onClick={() => props.close()}>
-                  <Link to="/newestposts">Edit profile</Link>
+                  <Link to="/user/edit/:userId">Edit profile</Link>
                 </li>
             <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/adeu">Settings</Link>
             </li>
-            <li className="nav-items" onClick={() => props.close()}>
-                <Link to="/users">LogOut</Link>
+            <li onClick={() => props.close()}>
+            {/* <Link to={`/user/${isAuthenticated().user._id}`}> */}
+                     
+            {/* {isAuthenticated().user.name} */}
+
+                    {/* </Link>     */}
+            </li>     
+            <li className="logout-in">
+                <span style={{cursor:"pointer",color:"#000000"}}
+                    onClick={() =>signout(() => props.history.push('/'))}>
+                    Signout
+                </span> 
             </li>
         </ul>
         </nav>
@@ -31,4 +43,4 @@ const userSideDrawer = props => {
     )
 };
 
-export default userSideDrawer;
+export default withRouter(userSideDrawer);

@@ -22,7 +22,7 @@ const Header = props => (
                     </div>
                     <div className="u-menu-mv">
                     
-                   <button onClick={props.userClickHandler}> {isAuthenticated()? <ProfilePicture user={isAuthenticated().user}/>  : <User_navbar_out/> }</button>
+                   <button className="profile-mov-menu" onClick={props.userClickHandler}> {isAuthenticated()? <ProfilePicture user={isAuthenticated().user}/>  : <User_navbar_out/> }</button>
 
                     {/* <ProfilePicture user={isAuthenticated().user}/> */}
                         

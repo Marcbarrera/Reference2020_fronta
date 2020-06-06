@@ -187,17 +187,21 @@ class WriteAPost extends Component {
                         <label className="text-muted"><h3>Title</h3></label>
                         <input onChange={this.handleChange ("title")} type="text" value={title} className="form-control" />
                     </div> 
+                    <hr class="style7"/>
+
+
                     <div className="category-select-row">
                         <label className="text-muted"><h3>Category</h3></label>
                             <select className="select-input" name='category' value={category} onChange = {this.DropdownChange}>
                                 <option value = "Music" selected>Music</option>
                                 <option value = "Cinema">Cinema</option>
-                                <option value = "Fine Arts">Fine Arts</option>
+                                <option value = "Painting">Painting</option>
                                 <option value = "Fashion">Fashion</option>
                                 <option value = "Literature">Literature</option>
                                 <option value = "Photography">Photography</option>
                             </select>
                     </div>
+                    <hr class="style7"/>
 
                     <div className="presentation">
                         <h3>
@@ -220,6 +224,8 @@ class WriteAPost extends Component {
                             <input onChange={this.handleChange("photo2")} type="file" accept="image/*" className="form-control" />
                         </div> 
                     </div>
+                   
+                    <hr class="style7"/>
 
                     <h3 className="content-title">Content</h3>
                     <p className="content-explanation">Select the type of content of the <strong>TARGET</strong></p>
@@ -231,6 +237,7 @@ class WriteAPost extends Component {
                             <option value = "Picture">Upload a Picture</option>
                         </select>
                     </div>
+                    
 
                     {this.state.target_content==='Youtube' ?
                         <div className="form-group">
@@ -245,6 +252,7 @@ class WriteAPost extends Component {
                         <input onChange={this.handleChange("photo_target")} type="file" accept="image/*" className="form-control" />
                     </div> 
                     }
+                    <hr class="style7"/>
 
                     <h4>Select the type of content of the <strong>REFERENCE</strong></h4>
                     <div className="form-group">
@@ -274,7 +282,10 @@ class WriteAPost extends Component {
                    
 
                     <div className="form-group">
+                    <hr class="style7"/>
+
                         <label className="text-muted"><h3>Explanation</h3></label>
+
                         {/* <textarea id="mytextarea" onChange={() => this.handleChange("body")} type="text" value={body} className="form-control"/> */}
                      <Editor
                         initialValue=""

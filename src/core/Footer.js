@@ -1,8 +1,6 @@
 
 import React from "react";
-import User_footer_in from './User_footer_in';
-import { Link, withRouter } from 'react-router-dom';
-import {isAuthenticated} from '../auth/index';
+
 
 const Footer = props => (
     <footer>
@@ -29,8 +27,9 @@ const Footer = props => (
 
         </div>
         <div className="footer-bottom">
-            <p>Made with love and redbull by Marc Barrera</p>
-
+            <div className="container">
+                <p>Made with love and redbull by Marc Barrera. 2020</p>
+            </div>
         </div>
     
 
