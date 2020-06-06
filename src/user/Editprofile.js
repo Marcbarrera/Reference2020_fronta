@@ -3,6 +3,8 @@ import { isAuthenticated } from '../auth'
 import {read, update, updateUser} from './apiUser'
 import { Redirect } from 'react-router-dom'
 import DefaultUserImage from '../images/User_placeholder_image.png'
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/lib/ReactCrop.scss'
 
 
 class Editprofile extends Component {
@@ -17,7 +19,14 @@ class Editprofile extends Component {
         error:"",
         fileSize: 0,
         loading: false,
-        mini_description:""
+        mini_description:"",
+        src: null,
+            crop: {
+                unit: "%",
+                width: 30,
+                aspect: 1 / 1
+            },
+            croppedImageUrl: null,
     }
 
 
@@ -73,10 +82,74 @@ class Editprofile extends Component {
 
         const fileSize = name === 'photo' ? event.target.files[0].size : 0;
 
-        this.userData.set(name, value)
+        name === 'photo' ? this.handleFile(event) : this.userData.set(name, value)
         this.setState({[name]: value, fileSize})
     }
 
+    handleFile = e => {
+      const fileReader = new FileReader()
+      fileReader.onloadend = () => {
+          this.setState({src: fileReader.result })
+      }   
+      fileReader.readAsDataURL(e.target.files[0])
+    }
+
+    onImageLoaded = image => {
+      this.imageRef = image
+    }
+
+    onCropChange = (crop) => {
+        this.setState({ crop });
+    }
+
+    onCropComplete = crop => {
+        if (this.imageRef && crop.width && crop.height) {
+            const croppedImageUrl = this.getCroppedImg(this.imageRef, crop)
+            this.setState({ croppedImageUrl })
+        }
+    }
+
+    getCroppedImg(image, crop) {
+        const canvas = document.createElement("canvas");
+        const scaleX = image.naturalWidth / image.width;
+        const scaleY = image.naturalHeight / image.height;
+        canvas.width = crop.width;
+        canvas.height = crop.height;
+        const ctx = canvas.getContext("2d");
+        
+        ctx.drawImage(
+            image,
+            crop.x * scaleX,
+            crop.y * scaleY,
+            crop.width * scaleX,
+            crop.height * scaleY,
+            0,
+            0,
+            crop.width,
+            crop.height
+        )
+
+        const reader = new FileReader()
+        canvas.toBlob(blob => {
+            reader.readAsDataURL(blob)
+            reader.onloadend = () => {
+                this.dataURLtoFile(reader.result, 'cropped.jpg')
+            }
+        })
+    }
+    dataURLtoFile(dataurl, filename) {
+      let arr = dataurl.split(','),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), 
+          n = bstr.length, 
+          u8arr = new Uint8Array(n);
+              
+      while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      let croppedImage = new File([u8arr], filename, {type:mime});
+      this.setState({croppedImage: croppedImage }) 
+  }
     clickSubmit = event => {
         event.preventDefault()
         this.setState({loading: true})
@@ -84,7 +157,7 @@ class Editprofile extends Component {
         if (this.isValid()) {
             const userId = this.props.match.params.userId;
             const token = isAuthenticated().token;
-
+            this.userData.set('photo', this.state.croppedImage)
         update(userId, token, this.userData).then(data => {
            if(data.error) this.setState({error: data.error});
                 else
@@ -107,7 +180,7 @@ class Editprofile extends Component {
     // )
 
     render() {
-        const {id, name, last_name, email, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio, redirectToProfile, error, loading} = this.state;
+        const {id, name, last_name, email, crop, src, password, mini_description, facebook, twitter, youtube, instagram, linkedin, genre, bio, redirectToProfile, error, loading} = this.state;
 
         if (redirectToProfile){
             return <Redirect to={`/user/${id}`}/>
@@ -142,13 +215,21 @@ class Editprofile extends Component {
 
                         <div className="form-first-row-first-column">
                         <div className="form-group">
-
                             <label className="text-muted">Profile Picture</label>
                             <input onChange={this.handleChange ("photo")} type="file" accept="image/*" className="form-control" />
                         </div>
-                        <img src={photoUrl}
+                        {!src &&<img src={photoUrl}
                     onError={i => (i.target.src = `${DefaultUserImage}`)}
-                    alt={name}/>
+                    alt={name}/>}
+                    {src && (
+                <ReactCrop
+                  src={src}
+                  crop={crop}
+                  onImageLoaded={this.onImageLoaded}
+                  onComplete={this.onCropComplete}
+                  onChange={this.onCropChange}
+                 /> 
+            )}
                         </div>
 
                     

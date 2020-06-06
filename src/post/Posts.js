@@ -37,7 +37,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                     <Link to={`/post/${post._id}`} className="post-url">
                     <div className="card-wrapper">
 
-                                <div className={`col-category .${post.category}`}>
+                                <div className={`col-category ${post.category}`}>
                                 <p>{post.category}</p>
                                 </div>
 

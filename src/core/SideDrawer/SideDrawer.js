@@ -23,7 +23,7 @@ const sideDrawer = props => {
                 <Link to="/users">Users</Link>
             </li>
             <li className="nav-items" onClick={() => props.close()}>
-                <Link to="/post/created">Write a post</Link>
+                <Link to="/writeapost">Write a post</Link>
             </li>
             <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/myposts">My posts</Link>

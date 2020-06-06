@@ -344,6 +344,11 @@
               justify-content: start;
               width:8%;
               // background-color: orange;
+              &.Cinema{
+                p{color:blue;
+                }
+                
+              }
 
                 p{
                   transform: rotate(-90deg);

@@ -23,7 +23,8 @@ class WriteAPost extends Component {
         youtube_target:'',
         youtube_reference:'',
         loading: false,
-        redirectToProfile:false
+        redirectToProfile:false,
+        previews: {}
     }
 
 
@@ -62,6 +63,19 @@ class WriteAPost extends Component {
     //     this.setState({ [name]: value, fileSize });
     // };
 
+    handleFile = e => {
+      this.setState({photoFile: e.target.files[0]})
+      const file = e.target.files[0]
+      const fileReader = new FileReader()
+      fileReader.onloadend = () => {
+          this.setState({photoFile: file, photoUrl: fileReader.result})
+      }   
+
+      if(file) {
+          fileReader.readAsDataURL(file)
+      }
+  }
+
     handleChange = name => event => {
         this.setState({ error: "" });
         let value;
@@ -69,6 +83,11 @@ class WriteAPost extends Component {
 
         if ((name === "photo1") || name === "photo2" || name === "photo_target" || name === "photo_reference") {
             value = event.target.files[0] 
+            const fileReader = new FileReader();
+            fileReader.onloadend = () => {
+              this.setState({ previews: {...this.state.previews, [name]: fileReader.result} })
+            }
+            fileReader.readAsDataURL(value)
         }else{
             value = event.target.value;
         }
@@ -149,8 +168,7 @@ class WriteAPost extends Component {
     // )
 
     render() {
-        const {  title, body, user, category, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
-        console.log(body)
+        const {  title, body, user, category, previews, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
         if (redirectToProfile){
             return <Redirect to={`/user/${user._id}`}/> 
         }
@@ -215,6 +233,7 @@ class WriteAPost extends Component {
                         <div className="first-thumbnail">
                             <label className="text-muted">First thumbnail</label>
                             <input onChange={this.handleChange("photo1")} type="file" accept="image/*" className="form-control" />
+                            {previews.photo1 && <img src={previews.photo1} alt="thumb1"/>}
                         </div> 
                         <div className="spacer-column">
 
@@ -222,6 +241,7 @@ class WriteAPost extends Component {
                         <div className="second-thumbnail">
                             <label className="text-muted">Second thumbnail</label>
                             <input onChange={this.handleChange("photo2")} type="file" accept="image/*" className="form-control" />
+                            {previews.photo2 && <img src={previews.photo2} alt="thumb1"/>}
                         </div> 
                     </div>
                    
@@ -250,6 +270,7 @@ class WriteAPost extends Component {
                      <div className="form-group">
                         <label className="text-muted">Target Picture</label>
                         <input onChange={this.handleChange("photo_target")} type="file" accept="image/*" className="form-control" />
+                        {previews.photo_target && <img src={previews.photo_target} alt="thumb1"/>}
                     </div> 
                     }
                     <hr class="style7"/>
@@ -275,6 +296,7 @@ class WriteAPost extends Component {
                      <div className="form-group">
                         <label className="text-muted">Reference Picture</label>
                         <input onChange={this.handleChange("photo_reference")} type="file" accept="image/*" className="form-control" />
+                        {previews.photo_reference && <img src={previews.photo_reference} alt="thumb1"/>}
                     </div> 
                     }
                     

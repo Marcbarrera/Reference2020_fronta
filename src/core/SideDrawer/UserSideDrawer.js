@@ -19,17 +19,17 @@ const userSideDrawer = (props) => {
                     <Link to="/user/:userId">Profile</Link>
                 </li>
                 <li className="nav-items" onClick={() => props.close()}>
-                  <Link to="/user/edit/:userId">Edit profile</Link>
+                  <Link to={`/user/edit/${isAuthenticated().user._id}`}>Edit profile</Link>
                 </li>
             <li className="nav-items" onClick={() => props.close()}>
                 <Link to="/adeu">Settings</Link>
             </li>
             <li onClick={() => props.close()}>
-            {/* <Link to={`/user/${isAuthenticated().user._id}`}> */}
+            <Link to={`/user/${isAuthenticated().user._id}`}>
                      
-            {/* {isAuthenticated().user.name} */}
+            {isAuthenticated().user.name}
 
-                    {/* </Link>     */}
+                    </Link>    
             </li>     
             <li className="logout-in">
                 <span style={{cursor:"pointer",color:"#000000"}}
