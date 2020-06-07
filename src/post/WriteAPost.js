@@ -223,7 +223,7 @@ getCroppedImg(image, crop, name) {
     render() {
         const {  title, body, src, crop, user, category, previews, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
         if (redirectToProfile){
-            return <Redirect to={`/user/${user._id}`}/> 
+            return <Redirect to={`/posts`}/> 
         }
 
 

@@ -40,12 +40,12 @@ const userSideDrawer = (props) => {
 
             </Link>     */}
             </li>     
-            {/* <li className="logout-in" onClick={() => props.close()}>
+            <li className="logout-in" onClick={() => props.close()}>
                 <span style={{cursor:"pointer",color:"#000000"}}
                     onClick={() =>signout(() => props.history.push('/'))}>
                     Signout
                 </span> 
-            </li> */}
+            </li>
         </ul>
         </nav>
 

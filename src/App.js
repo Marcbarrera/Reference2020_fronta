@@ -6,15 +6,17 @@ import SideDrawer from './core/SideDrawer/SideDrawer';
 import UserSideDrawer from './core/SideDrawer/UserSideDrawer'
 import Backdrop from './core/Backdrop/Backdrop';
 import Footer from './core/Footer'
+import Modal from 'react-modal'
 
 
-
+Modal.setAppElement('#root')
 class App extends Component {
 
   state = {
     SideDrawerOpen: false,
-    UserSideDrawerOpen:false
+    UserSideDrawerOpen:false,
   };
+
 
   drawerToggleClickHandler = () => {
     this.setState((prevState) => {

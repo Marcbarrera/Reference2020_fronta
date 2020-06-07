@@ -42,7 +42,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                                 </div>
 
                                 <div className="col-card-body">  
-                                <h4 className="card-title">{post.title.substring(0,40)}</h4>
+                                <h4 className="card-title">{post.title.substring(0,42)}</h4>
 
                                     <div className="images-card-wrapper">
                                                 <img

@@ -66,7 +66,7 @@ class Signin extends Component {
             return <Redirect to="/"/>
         }
         return (
-            <div className="container">
+            <div className="container-signin">
                 <h2> SIGN IN</h2>
                 <p> TO KEEP ENJOYING OUR CONTENT</p>
                 <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
