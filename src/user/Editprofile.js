@@ -21,12 +21,12 @@ class Editprofile extends Component {
         loading: false,
         mini_description:"",
         src: null,
-            crop: {
-                unit: "%",
-                width: 30,
-                aspect: 1 / 1
-            },
-            croppedImageUrl: null,
+        crop: {
+            unit: "%",
+            width: 30,
+            aspect: 1 / 1
+        },
+        croppedImageUrl: null,
     }
 
 
@@ -53,8 +53,8 @@ class Editprofile extends Component {
     isValid = () => {
         const {name, email, password, fileSize} = this.state
 
-        if (fileSize > 500000) {
-            this.setState({error: "File size should be less than 500kb"})
+        if (fileSize > 1500000) {
+            this.setState({error: "File size should be less than 1.5 Mb"})
             return false;
         }
         if (name.length === 0) {

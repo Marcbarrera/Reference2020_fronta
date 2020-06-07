@@ -42,7 +42,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                                 </div>
 
                                 <div className="col-card-body">  
-                                <h4 className="card-title">{post.title}</h4>
+                                <h4 className="card-title">{post.title.substring(0,40)}</h4>
 
                                     <div className="images-card-wrapper">
                                                 <img
@@ -72,13 +72,11 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                                         {/* <div className="card-text" dangerouslySetInnerHTML={{__html: post.body.substring(0,100)}}/> */}
                                         {/* <p className="card-text">{post.body.substring(0,100)}></p>  */}
                                         
-                                        <p className="card-text">{post.likes.length} likes</p> 
-
-
                                         <p className="font-italic mark">
                                             Posted by {" "}{posterName}{" "}
                                             {/* on {new Date (post.created).toDateString()} */}
                                         </p>
+                                        <p className="card-text">{post.likes.length} likes</p> 
                                     </div>    
                                         {/* <Link
                                             to={`/post/${post._id}`}

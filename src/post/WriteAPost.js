@@ -3,8 +3,8 @@ import { isAuthenticated } from '../auth'
 import {create, addPhoto} from './apiPost'
 import { Redirect } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
-
-
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/lib/ReactCrop.scss'
 
 class WriteAPost extends Component {
     state = {
@@ -17,14 +17,28 @@ class WriteAPost extends Component {
         error:'',
         user: {},
         fileSize : 0,
-        category: '',
+        category: 'Music',
         target_content: '',
         reference_content:'',
         youtube_target:'',
         youtube_reference:'',
         loading: false,
         redirectToProfile:false,
-        previews: {}
+        previews: {},
+        src: {},
+        crop:{ 
+            photo1: {
+              unit: "%",
+            width: 30,
+            aspect: 1 / 1
+            },
+            photo2: {
+              unit: "%",
+            width: 30,
+            aspect: 1 / 1
+            }
+        },
+        croppedImageUrl: {} 
     }
 
 
@@ -62,46 +76,31 @@ class WriteAPost extends Component {
     //     this.postData.set(name, value);
     //     this.setState({ [name]: value, fileSize });
     // };
-
-    handleFile = e => {
-      this.setState({photoFile: e.target.files[0]})
-      const file = e.target.files[0]
-      const fileReader = new FileReader()
-      fileReader.onloadend = () => {
-          this.setState({photoFile: file, photoUrl: fileReader.result})
-      }   
-
-      if(file) {
-          fileReader.readAsDataURL(file)
-      }
-  }
-
     handleChange = name => event => {
         this.setState({ error: "" });
         let value;
         let fileSize;
-
-        if ((name === "photo1") || name === "photo2" || name === "photo_target" || name === "photo_reference") {
-            value = event.target.files[0] 
-            const fileReader = new FileReader();
-            fileReader.onloadend = () => {
-              this.setState({ previews: {...this.state.previews, [name]: fileReader.result} })
-            }
-            fileReader.readAsDataURL(value)
-        }else{
-            value = event.target.value;
+        
+        if(name.includes('photo')){
+          value = event.target.files[0] 
+          const fileReader = new FileReader();
+          fileReader.onloadend = () => {
+            name.includes('photo_') 
+            ? this.setState({ previews: {...this.state.previews, [name]: fileReader.result} }) 
+            : this.setState({src: {...this.state.src, [name]:fileReader.result} })
+          }
+          fileReader.readAsDataURL(value)
+          fileSize = event.target.files[0].size
+        } else {
+          value = event.target.value;
+          fileSize = 0;
         }
 
-       if ((name === "photo1") || name === "photo2" || name === "photo_target" || name === "photo_reference") {
-            fileSize = event.target.files[0].size
-        }else{
-            fileSize = 0;
-        } 
         this.postData.set(name, value);
         this.setState({ [name]: value, fileSize });
         // this.setState({ [name]: value1, fileSize1 });
-
     };
+
 
     DropdownChange = (e) =>{ 
         this.postData.set([e.target.name], e.target.value)
@@ -125,7 +124,6 @@ class WriteAPost extends Component {
         event.preventDefault();
         this.setState({ loading: true });
         
-     
         if (this.isValid()) {
             const userId = isAuthenticated().user._id;  //aquí estava l'error
             const token = isAuthenticated().token;
@@ -158,8 +156,63 @@ class WriteAPost extends Component {
        this.setState({body})
 }
    
+onImageLoaded = (image, name) => {
+  this[name] = image
+}
 
+onCropChange = (crop, name) => {
+    this.setState({ crop: {...this.state.crop, [name]: crop} });
+}
 
+onCropComplete = (crop, name) => {
+    if (this[name] && crop.width && crop.height) {
+        const croppedImageUrl = this.getCroppedImg(this[name], crop, name)
+        this.setState({ croppedImageUrl: {...this.state.croppedImageUrl, [name]: croppedImageUrl} })
+    }
+}
+
+getCroppedImg(image, crop, name) {
+    const canvas = document.createElement("canvas");
+    const scaleX = image.naturalWidth / image.width;
+    const scaleY = image.naturalHeight / image.height;
+    canvas.width = crop.width;
+    canvas.height = crop.height;
+    const ctx = canvas.getContext("2d");
+    
+    ctx.drawImage(
+        image,
+        crop.x * scaleX,
+        crop.y * scaleY,
+        crop.width * scaleX,
+        crop.height * scaleY,
+        0,
+        0,
+        crop.width,
+        crop.height
+    )
+
+    const reader = new FileReader()
+    canvas.toBlob(blob => {
+        reader.readAsDataURL(blob)
+        reader.onloadend = () => {
+            this.dataURLtoFile(reader.result, 'cropped.jpg', name)
+        }
+    })
+    }
+    dataURLtoFile(dataurl, filename, name) {
+      let arr = dataurl.split(','),
+          mime = arr[0].match(/:(.*?);/)[1],
+          bstr = atob(arr[1]), 
+          n = bstr.length, 
+          u8arr = new Uint8Array(n);
+              
+      while(n--){
+          u8arr[n] = bstr.charCodeAt(n);
+      }
+      let croppedImage = new File([u8arr], filename, {type:mime});
+      this.postData.set(name, croppedImage)
+      this.setState({[name]:croppedImage}) 
+    }
 
     
 
@@ -168,7 +221,7 @@ class WriteAPost extends Component {
     // )
 
     render() {
-        const {  title, body, user, category, previews, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
+        const {  title, body, src, crop, user, category, previews, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
         if (redirectToProfile){
             return <Redirect to={`/user/${user._id}`}/> 
         }
@@ -211,7 +264,7 @@ class WriteAPost extends Component {
                     <div className="category-select-row">
                         <label className="text-muted"><h3>Category</h3></label>
                             <select className="select-input" name='category' value={category} onChange = {this.DropdownChange}>
-                                <option value = "Music" selected>Music</option>
+                                <option value = "Music">Music</option>
                                 <option value = "Cinema">Cinema</option>
                                 <option value = "Painting">Painting</option>
                                 <option value = "Fashion">Fashion</option>
@@ -233,7 +286,15 @@ class WriteAPost extends Component {
                         <div className="first-thumbnail">
                             <label className="text-muted">First thumbnail</label>
                             <input onChange={this.handleChange("photo1")} type="file" accept="image/*" className="form-control" />
-                            {previews.photo1 && <img src={previews.photo1} alt="thumb1"/>}
+                            {src['photo1'] && (
+                <ReactCrop
+                  src={src['photo1']}
+                  crop={crop['photo1']}
+                  onImageLoaded={(e)=>this.onImageLoaded(e, 'photo1')}
+                  onComplete={(cr)=>this.onCropComplete(cr, 'photo1')}
+                  onChange={(e)=>this.onCropChange(e, 'photo1')}
+                 /> 
+            )}
                         </div> 
                         <div className="spacer-column">
 
@@ -241,7 +302,15 @@ class WriteAPost extends Component {
                         <div className="second-thumbnail">
                             <label className="text-muted">Second thumbnail</label>
                             <input onChange={this.handleChange("photo2")} type="file" accept="image/*" className="form-control" />
-                            {previews.photo2 && <img src={previews.photo2} alt="thumb1"/>}
+                            {src['photo2'] && (
+                <ReactCrop
+                  src={src['photo2']}
+                  crop={crop['photo2']}
+                  onImageLoaded={(e)=>this.onImageLoaded(e, 'photo2')}
+                  onComplete={(cr)=>this.onCropComplete(cr, 'photo2')}
+                  onChange={(e)=>this.onCropChange(e, 'photo2')}
+                 /> 
+            )}
                         </div> 
                     </div>
                    
