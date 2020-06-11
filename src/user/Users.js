@@ -23,8 +23,8 @@ import DefaultUserImage from '../images/User_placeholder_image.png'
         const {users} = this.state;
         return (
             <div className="users-section">
-                    <h2>users</h2>
-                    <div className="container">
+                <h2>users</h2>
+                <div className="container">
                     <div className="users-row-wrapper">
                             {users.map((user, i) =>(
                             <div key={i} className="users-card">
@@ -42,7 +42,7 @@ import DefaultUserImage from '../images/User_placeholder_image.png'
                                 </div>
                             </div>
                         ))}
-                </div>
+                     </div>
                 </div>
             </div>
         );

@@ -7,6 +7,8 @@ import { Link, withRouter } from 'react-router-dom';
 import {isAuthenticated} from '../auth/index';
 import DrawerToggleButton from './SideDrawer/DrawerToggleBurger'
 import UserSideDrawer from './SideDrawer/UserSideDrawer'
+import SignInModal from './Modals/SignInModal'
+
 import ProfilePicture from '../user/ProfilePicture'
 
 
@@ -30,7 +32,7 @@ const Header = props => (
                 </div>
             <div className="bottom-header">
                        
-             <Post_navbar/> <DrawerToggleButton click={props.drawerClickHandler} /> <div className="spacer"></div>  {isAuthenticated()? <User_navbar_in/>  : <User_navbar_out/> }
+             <Post_navbar/> <DrawerToggleButton click={props.drawerClickHandler} /> <div className="spacer"></div>  {isAuthenticated()? <User_navbar_in/>  : <User_navbar_out click={props.SignInModal}/> }
             </div>
        </div>
     </header>

@@ -48,18 +48,17 @@ const User_navbar = ({history}) => (
             </li>
             <li className="user-menu-foto">
                 <div className="image-profile-div">
+                    <button>
                 
                     {/* <Link to={`/user/${isAuthenticated().user._id}`} 
                      style={
                      isActive(
                          history, 
                          `/user/${isAuthenticated().user._id}`
-                         )}> */}
-                    
+                         )}> */}              
+                    {/* </Link>          */}
                     <ProfilePicture user={isAuthenticated().user}/>
-
-{/* 
-                    </Link>          */}
+                    </button>
                 </div>
             </li>
         </ul>

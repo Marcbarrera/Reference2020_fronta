@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom';
 import {signin, authenticate} from '../auth/index'
+import SocialLogin from './SocialLogin'
 
 class Signin extends Component {
     state = {
@@ -8,12 +9,10 @@ class Signin extends Component {
         password: "",
         error: "",
         redirectToReferer: false
-
-
     }
 
     handleChange = (name) => (event) => {
-        this.setState({error:""}) //quan hi ha canvis al formulari els errors no es mostren si shavien mostrat abans
+        this.setState({error:""}) //quan hi ha canvis al formulari els errors no es mostren si s'havien mostrat abans
         this.setState({[name]: event.target.value})
     }
     
@@ -22,8 +21,6 @@ class Signin extends Component {
         event.preventDefault()
         const {email, password} = this.state;
         const user = {email, password};
-
-       
 
     signin(user).then(data => {
            if(data.error) {
@@ -43,14 +40,17 @@ class Signin extends Component {
     signinForm = (email, password) => (
         <form>
                     
-                    <div className="form-group">
+                    <div className="email-column">
                         <label className="text-muted">Email</label>
                         <input onChange={this.handleChange ("email")} type="email" value={email}className="form-control"/>
                     </div>   
-                    <div className="form-group">
+                    <div className="password-column">
                         <label className="text-muted">Password</label>
                         <input onChange={this.handleChange ("password")} type="password" value={password} className="form-control"/>
                     </div>     
+                    <div>
+                        {/* <SocialLogin/> */}
+                    </div>    
                     
                     <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">
                         Submit
@@ -68,7 +68,7 @@ class Signin extends Component {
         return (
             <div className="container-signin">
                 <h2> SIGN IN</h2>
-                <p> TO KEEP ENJOYING OUR CONTENT</p>
+                <p> To keep enjoying our content</p>
                 <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>

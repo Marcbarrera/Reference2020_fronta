@@ -11,7 +11,7 @@ class ProfilePicture extends Component {
     render() {
 
     const {user} = this.state;
-    const photoUrl = `${process.env.REACT_APP_API_URL}/user/photo/${user._id}?${new Date().getTime()}`
+    const photoUrl = `${process.env.REACT_APP_API_URL}/user/photo/${user._id}`
 
     return (
             <img  src={photoUrl} className="user-foto"

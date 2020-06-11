@@ -1,16 +1,14 @@
 import React from 'react'
 import Posts from '../post/Posts'
+import Categories from '../pages/Categories';
+import ReferenceInit from '../pages/ReferenceInit';
 
 
 const Home = () => (
     <div>
-        <div className="jumbotron">
-                <h2>This is REFERENCE</h2>
-                <p>What is reference?</p>
-            </div>
-        <div className="container">
+        <ReferenceInit/>
+        <Categories/>
         <Posts/>
-        </div>    
     </div>
 )
 

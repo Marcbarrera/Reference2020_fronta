@@ -10,8 +10,16 @@ const isActive = (history, path) => {
 const Post_navbar = ({history}) => (
     <nav className="post-navbar">
        <ul className="">
-            <li className="nav-items">
+            <li className="categories-link">
                 <Link style={isActive(history, "/categories")} to="/categories">Categories</Link>
+                <ul className="dropdown">
+                    <li>Music</li>
+                    <li>Cinema</li>
+                    <li>Painting</li>
+                    <li>Photography</li>
+                    <li>Literature</li>
+                    <li>Fashion</li>
+                </ul>
             </li>
             <li className="nav-items">
                 <Link style={isActive(history, "/posts")} to="/posts">Posts</Link>

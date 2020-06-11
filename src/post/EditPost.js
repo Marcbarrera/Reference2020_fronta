@@ -1,29 +1,31 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {singlePost} from './apiPost';
 import { isAuthenticated } from '../auth'
 import {create, addPhoto} from './apiPost'
-import { Redirect } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react';
 import ReactCrop from 'react-image-crop'
 import 'react-image-crop/lib/ReactCrop.scss'
 
-class WriteAPost extends Component {
+ class EditPost extends Component {
+
     state = {
+        id:'',
+        category: '',
         title:'',
-        body:'',
         photo1:'',
         photo2:'',
         photo_target:'',
         photo_reference:'',
-        error:'',
-        user: {},
-        fileSize : 0,
-        category: '',
         target_content: '',
         reference_content:'',
         youtube_target:'',
         youtube_reference:'',
+        body:'',
+        redirectToProfile: false,
+        error:'',
+        user: {},
+        fileSize : 0,
         loading: false,
-        redirectToProfile:false,
         previews: {},
         src: {},
         crop:{ 
@@ -41,10 +43,21 @@ class WriteAPost extends Component {
         croppedImageUrl: {} 
     }
 
+    init = postId => {
+        singlePost(postId).then(data => {
+            if (data.error) {
+                this.setState({ redirectToProfile: true});
+            } else {
+                this.setState({ id: data._id, body:data.body, category:data.category, title: data.title, error:'', photo1: data.photo1, photo2: data.photo2, photo_target: data.photo_target, photo_reference: data.photo_reference });
+            }
+        })
+    }
 
     componentDidMount() {
         this.postData = new FormData();
-        this.setState({ user: isAuthenticated().user });
+        const postId = this.props.match.params.postId;
+        this.init(postId);      
+        
     }
 
     isValid = () => {
@@ -115,9 +128,10 @@ class WriteAPost extends Component {
           value = event.target.value;
           fileSize = 0;
         }
-        
+
         this.postData.set(name, value);
         this.setState({ [name]: value, fileSize });
+        // this.setState({ [name]: value1, fileSize1 });
     };
 
 
@@ -233,46 +247,16 @@ getCroppedImg(image, crop, name) {
       this.setState({[name]:croppedImage}) 
     }
 
-    
-
-    // newPostForm = (title, body) => (
-        
-    // )
-
     render() {
         const {  title, body, src, crop, user, category, previews, target_content,reference_content, error, youtube_target, youtube_reference, loading, redirectToProfile} = this.state;
-        if (redirectToProfile){
-            return <Redirect to={`/posts`}/> 
-        }
-
-
-        // const photoUrl = id ? `${process.env.REACT_APP_API_URL}/user/photo/${id}?${new Date().getTime()}`
-        // : DefaultUserImage; 
-     
 
         return (
-           <section className="write-a-post-section"> 
-            <div className="container">
-                <h2>WRITE A POST</h2>
-                
-                <div className="write-post-error" style={{display:error ? "" : "none"},{color:"red"} }>
-                    {error}
-                </div>
-                {loading ? (
-                <div className="jumbotron text-center">
-                    <h2>Loading...</h2>
-                </div>
-                ) : (
-                ""
-                )}
- 
-                {/* <img src={photoUrl}
-                onError={i => (i.target.src = `${DefaultUserImage}`)}
-                alt={name}/> */}
+            <section className="section-edit-post">
+                <div className="container">
+                    <h2>EDIT POST</h2>
+                    {/* {JSON.stringify(this.state)} */}
 
-                {/* {this.newPostForm(title, body)} */}
-
-                <form>
+                    <form>
                     <div className="title-group">
                         <label className="text-muted"><h3>Title</h3></label>
                         <input onChange={this.handleChange ("title")} type="text" value={title} className="form-control" />
@@ -398,7 +382,6 @@ getCroppedImg(image, crop, name) {
 
                         <label className="text-muted"><h3>Explanation</h3></label>
 
-                        {/* <textarea id="mytextarea" onChange={() => this.handleChange("body")} type="text" value={body} className="form-control"/> */}
                      <Editor
                         initialValue=""
                         init={{
@@ -417,14 +400,13 @@ getCroppedImg(image, crop, name) {
                         onEditorChange={this.handleOnChange}
                     />
                        
-                        {/* <textarea onChange={this.handleChange("body")} type="text" value={body} className="form-control"/> */}
                  
                     </div>  
 
                     
                     
                     <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">
-                        Create Post
+                        Update Post
                     </button>
                     <br></br>
                     <br></br>
@@ -433,10 +415,10 @@ getCroppedImg(image, crop, name) {
                     </div>
                 </form>
 
-            </div>
+                </div>
             </section>
         )
     }
 }
 
-export default WriteAPost;
+export default EditPost;

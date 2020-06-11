@@ -45,7 +45,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                                 <h4 className="card-title">{post.title.substring(0,42)}</h4>
 
                                     <div className="images-card-wrapper">
-                                                <img
+                                                <img className="first-thumbnail"
                                                     src={`${
                                                         process.env.REACT_APP_API_URL
                                                     }/post/photo1/${post._id}`}
@@ -55,7 +55,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
                                                     }
 
                                                 />
-                                                <img
+                                                <img className="second-thumbnail"
                                                     src={`${
                                                         process.env.REACT_APP_API_URL
                                                     }/post/photo2/${post._id}`}
@@ -102,6 +102,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         return (
             <section className="post-section">
             <div className="container">
+             <h2> {!posts.length? 'Loading...' : "Latest posts" } </h2>
                 {this.renderPosts(posts)}
                 
             </div>
