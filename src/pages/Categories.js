@@ -18,7 +18,7 @@ import fashion from '../images/fashion2.jpg'
                 <div className="categories-wrapper">
                     <Link className="music-category" to="/categories/music">
                         <div>
-                            <img src={music} /><span>music</span>
+                            <img src={music} /><span><h3>music</h3></span>
                         </div>
                     </Link>
                      <Link className="cinema-category" to="/categories/cinema">       

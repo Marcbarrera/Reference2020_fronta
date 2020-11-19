@@ -457,24 +457,34 @@
   
               .music-category {
                 position: relative;
+               
                 width:33%;
-                overflow: hidden;
-                  img{width:100%;
+                  img{
+                    width:100%;
                     transition: transform 1s, filter 1s ease-in-out;
                     transform-origin: center center;
                     filter: brightness(60%);
+                    
                   }
                   img:hover{
                     filter: brightness(100%);
                     transform: scale(1);
                   }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
+                  }
               }
               .cinema-category {
                 max-width:33%;
                 min-height: 253px;
+                position: relative;
 
 
-                overflow: hidden;
+
                   img{width:100%;
                     transition: transform 1s, filter 1s ease-in-out;
                     transform-origin: center center;
@@ -485,9 +495,17 @@
                     filter: brightness(100%);
                     transform: scale(1);
                   }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
+                  }
               }
               .finearts-category {
                 width:33%;
+                position: relative;
                 // overflow: hidden;
                   img{width:100%;
                     transition: transform 1s, filter 1.5s ease-in-out;
@@ -499,10 +517,18 @@
                     filter: brightness(100%);
                     transform: scale(1);
                   }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
+                  }
               }
               .photography-category {
                 width:33%;
                 margin-top: 0.5%;
+                position:relative;
 
                   img{width:100%;
                     transition: transform 1s, filter 2s ease-in-out;
@@ -513,10 +539,17 @@
                   img:hover{
                     filter: blur(0);
                     transform: scale(1.1);
-                  
+                  }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
                   }
               }
               .literature-category {
+                position: relative;
                 width:33%;
                 margin-top: 0.5%;
                   img{width:100%;
@@ -529,10 +562,18 @@
                     filter: brightness(100%);
                     transform: scale(1);
                   }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
+                  }
               }
               .fashion-category {
                 width:33%;
                 margin-top: 0.5%;
+                position: relative;
 
                 
                   img{width:100%;
@@ -544,6 +585,13 @@
                   img:hover{
                     filter: brightness(110%);
                     transform: scale(1);
+                  }
+                  span{
+                    position:absolute;
+                    left: 50%;
+                    top:50%;
+                    color:white;
+                    
                   }
               }
         }
