@@ -8,6 +8,11 @@ import Users from "./user/Users";
 import Editprofile from "./user/Editprofile"
 import Categories from "./pages/Categories"
 import Music from "./pages/Music"
+import Painting from "./pages/Painting"
+import Cinema from "./pages/Cinema"
+import Photography from "./pages/Photography"
+import Literature from "./pages/Literature"
+import Fashion from "./pages/Fashion"
 import NewestPosts from './pages/NewestPosts'
 import WriteAPost from "./post/WriteAPost"
 import PrivateRoute from './auth/PrivateRoute'
@@ -29,11 +34,11 @@ const MainRouter = () => (
             <PrivateRoute exact path="/post/edit/:postId" component={EditPost}/>
             <Route exact path="/categories" component={Categories}></Route>
             <Route exact path="/categories/music" component={Music}></Route>
-            <Route exact path="/categories/cinema" component={Music}></Route>
-            <Route exact path="/categories/painting" component={Music}></Route>
-            <Route exact path="/categories/photography" component={Music}></Route>
-            <Route exact path="/categories/literature" component={Music}></Route>
-            <Route exact path="/categories/fashion" component={Music}></Route>
+            <Route exact path="/categories/cinema" component={Cinema}></Route>
+            <Route exact path="/categories/painting" component={Painting}></Route>
+            <Route exact path="/categories/photography" component={Photography}></Route>
+            <Route exact path="/categories/literature" component={Literature}></Route>
+            <Route exact path="/categories/fashion" component={Fashion}></Route>
             <Route exact path="/newestposts" component={NewestPosts}></Route>
             <Route exact path="/users" component={Users}></Route>
             <Route exact path="/signup" component={Signup}></Route>
