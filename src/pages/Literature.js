@@ -3,7 +3,7 @@ import {list} from "../post/apiPost"
 import {Link} from 'react-router-dom'
 import DefaultPost from '../images/defaulPostImg.jpg'
 
- class Music extends Component {
+ class Literature extends Component {
     state = {
         posts: []
     }
@@ -23,7 +23,7 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         return (
         <ul className="row">
             
-            {posts.filter((post)=> post.category === "Music").map((post, i) => {
+            {posts.filter((post)=> post.category === "Literature").map((post, i) => {
 
                 const posterId = post.postedBy ? post.postedBy._id : "";
                 const posterName = post.postedBy ? post.postedBy.name : " Unknown";
@@ -93,4 +93,4 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         );
     }
 }
-export default Music;
+export default Literature;

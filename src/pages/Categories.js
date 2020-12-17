@@ -16,21 +16,30 @@ import fashion from '../images/fashion2.jpg'
             <h2>CATEGORIES</h2>
             <div className="container">
                 <div className="categories-wrapper">
-                    <Link className="music-category" to="/categories/music">
-                        <div>
-                            <img src={music} /><span><h3>music</h3></span>
+                    
+                        <div className="music-category">
+                        <Link  to="/categories/music">
+
+                            <img src={music}/>
+                            <span>music</span>
+                            </Link>
                         </div>
-                    </Link>
-                     <Link className="cinema-category" to="/categories/cinema">       
-                         <div>  
+                        
+
+                         
+                         <div className="cinema-category">  
+                         <Link  to="/categories/cinema">   
                             <img src={cinema} /><span>cinema</span>
+                        </Link>
+
                         </div>
-                    </Link>
-                    <Link className="finearts-category" to="/categories/finearts">
-                        <div>
-                            <img src={paint} /><span>Bellas Artes</span>
+                            
+                        <div className="finearts-category">
+                            <Link  to="/categories/painting">
+                            <img src={paint} /><span>Painting</span>
+                            </Link>
+
                         </div>
-                    </Link>
                     <Link className="photography-category" to="/categories/photography">
                         <div>
                             <img src={photography} /><span>photography</span>

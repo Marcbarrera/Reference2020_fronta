@@ -57,7 +57,10 @@ const User_navbar = ({history}) => (
                          `/user/${isAuthenticated().user._id}`
                          )}> */}              
                     {/* </Link>          */}
+                    <Link to={`/user/${isAuthenticated().user._id}`}>
                     <ProfilePicture user={isAuthenticated().user}/>
+
+                    </Link>
                     </button>
                 </div>
             </li>

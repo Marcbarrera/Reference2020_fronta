@@ -86,7 +86,8 @@ header {
 
 .categories-section h2 {
   margin-top: 3rem;
-  text-align: center; }
+  text-align: center;
+  background-color: red; }
 
 .categories-section .container {
   display: flex;
@@ -94,7 +95,8 @@ header {
   width: 1140px;
   width: 80%;
   margin: 3rem auto;
-  height: 100vh; }
+  height: 100vh;
+   }
   .categories-section .container .categories-wrapper {
     display: flex;
     flex-direction: row;
@@ -103,11 +105,15 @@ header {
     .categories-section .container .categories-wrapper .music-category {
       background-color: red;
       width: 33%;
-      height: 30vh; }
+      height: 30vh; 
+      
+       
+    }
     .categories-section .container .categories-wrapper .cinema-category {
       background-color: red;
       width: 33%;
-      height: 30vh; }
+      height: 30vh; 
+    }   
     .categories-section .container .categories-wrapper .finearts-category {
       background-color: red;
       width: 33%;

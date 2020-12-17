@@ -36,15 +36,15 @@ class Signup extends Component {
 
     signupForm = (name, email, password) => (
         <form>
-                    <div className="form-group">
+                    <div className="name-column">
                         <label className="text-muted">Name</label>
                         <input onChange={this.handleChange ("name")} type="text" value={name} className="form-control" />
                     </div> 
-                    <div className="form-group">
+                    <div className="email-column">
                         <label className="text-muted">Email</label>
                         <input onChange={this.handleChange ("email")} type="email" value={email}className="form-control"/>
                     </div>   
-                    <div className="form-group">
+                    <div className="password-column">
                         <label className="text-muted">Password</label>
                         <input onChange={this.handleChange ("password")} type="password" value={password} className="form-control"/>
                     </div>     
@@ -59,12 +59,12 @@ class Signup extends Component {
 
         const {name, email, password, error, open} = this.state;
         return (
-            <div className="container">
-                <h1>Signup</h1>
-                <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
+            <div className="container-sign">
+                <h2>SIGN UP</h2>
+                <div className="sign-form-box" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>
-                <div className="alert alert-primary" style={{display:open ? "" : "none"}}> 
+                <div className="account-created" style={{display:open ? "" : "none"}}> 
                     New account created successfully. Please <Link to="/signin">Sign in</Link>.
                 </div>
                 {this.signupForm(name, email, password)}

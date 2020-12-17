@@ -41,10 +41,12 @@ import DefaultPost from '../images/defaulPostImg.jpg'
         
         
         return (
+            <section className="post-section">
+
             <div className="container">
-                <h2>Posts</h2>
+                <h2>{!posts.length? 'Loading...' : "TOP POSTS" } </h2>
                 
-        <ul className="row">
+        <ul className="posts-row">
             
             {array.map((post, i) => {
 
@@ -54,57 +56,68 @@ import DefaultPost from '../images/defaulPostImg.jpg'
             
             // console.log(post)
             return (
-                <li className={`card col-md-4 ${post.category}`} key={i}>
- 
-                    <div className="card-body">
-                    <img
-                        src={`${
-                            process.env.REACT_APP_API_URL
-                        }/post/photo1/${post._id}`}
-                        alt={post.title}
-                        onError={i =>
-                            (i.target.src = `${DefaultPost}`)
-                        }
-                        
-                    />
-                    <img
-                        src={`${
-                            process.env.REACT_APP_API_URL
-                        }/post/photo2/${post._id}`}
-                        alt={post.title}
-                        onError={i =>
-                            (i.target.src = `${DefaultPost}`)
-                        }
-                        
-                    />
-                    <h5 className="card-title">{post.title}</h5>
-                    <p className="card-text"><strong>{post.category}</strong></p>
-                    <p className="card-text">{post.body}</p> 
-                    <p className="card-text">{post.likes.length} likes</p> 
+                <li className="card col-md-4" key={i}>
+                    <Link to={`/post/${post._id}`} className="post-url">
+                    <div className="card-wrapper">
 
-                    <p className="font-italic mark">
-                        Posted by {" "}
-                        <Link to={`user/${posterId}`}>
-                            {posterName}{" "}
-                        </Link>
-                        on {new Date (post.created).toDateString()}
-                    </p>
-                    <Link
-                        to={`/post/${post._id}`}
-                        className="btn btn-raised byn-primary btn-sm"
-                    >
-                        Read more
-                    </Link>
+                                <div className={`col-category ${post.category}`}>
+                                <p>{post.category}</p>
+                                </div>
+
+                                <div className="col-card-body">  
+                                <h4 className="card-title">{post.title.substring(0,42)}</h4>
+
+                                    <div className="images-card-wrapper">
+                                                <img className="first-thumbnail"
+                                                    src={`${
+                                                        process.env.REACT_APP_API_URL
+                                                    }/post/photo1/${post._id}`}
+                                                    alt={post.title}
+                                                    onError={i =>
+                                                        (i.target.src = `${DefaultPost}`)
+                                                    }
+
+                                                />
+                                                <img className="second-thumbnail"
+                                                    src={`${
+                                                        process.env.REACT_APP_API_URL
+                                                    }/post/photo2/${post._id}`}
+                                                    alt={post.title}
+                                                    onError={i =>
+                                                        (i.target.src = `${DefaultPost}`)
+                                                    }
+                                                    
+                                                />
+                                    </div>
+                                    
+                                    <div className="post-info">
+                                        {/* <p className="card-text"><strong>{post.category}</strong></p> */}
+                                        {/* <div className="card-text" dangerouslySetInnerHTML={{__html: post.body.substring(0,100)}}/> */}
+                                        {/* <p className="card-text">{post.body.substring(0,100)}></p>  */}
+                                        
+                                        <p className="font-italic mark">
+                                            Posted by {" "}{posterName}{" "}
+                                            {/* on {new Date (post.created).toDateString()} */}
+                                        </p>
+                                        <p className="card-text">{post.likes.length} likes</p> 
+                                    </div>    
+                                        {/* <Link
+                                            to={`/post/${post._id}`}
+                                            className="btn btn-raised byn-primary btn-sm"
+                                        >
+                                            Read more
+                                        </Link> */}
+                            </div>
                     </div>
+                    </Link>
                 </li>
             )
  })}
         
 
-        </ul>
-        
-                
-            </div>
+        </ul>   
+        </div>
+        </section>
         );
     }
 }

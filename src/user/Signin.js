@@ -48,9 +48,6 @@ class Signin extends Component {
                         <label className="text-muted">Password</label>
                         <input onChange={this.handleChange ("password")} type="password" value={password} className="form-control"/>
                     </div>     
-                    <div>
-                        {/* <SocialLogin/> */}
-                    </div>    
                     
                     <button onClick={this.clickSubmit} className="btn btn-raised btn-primary">
                         Submit
@@ -66,10 +63,10 @@ class Signin extends Component {
             return <Redirect to="/"/>
         }
         return (
-            <div className="container-signin">
+            <div className="container-sign">
                 <h2> SIGN IN</h2>
                 <p> To keep enjoying our content</p>
-                <div className="alert alert-primary" style={{display:error ? "" : "none"}}>
+                <div className="sign-form-box" style={{display:error ? "" : "none"}}>
                     {error}
                 </div>
                 {this.signinForm(email, password)}
